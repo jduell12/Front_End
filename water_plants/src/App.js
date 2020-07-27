@@ -14,8 +14,6 @@ function App() {
         <PrivateRoute exact path = "/private/editplant" component ={EditPlant} />
         <PrivateRoute exact path = "/private/addplant" component= {AddPlant} />
       */}
-      <EditPlant />
-      
     </div>
   );
 }
