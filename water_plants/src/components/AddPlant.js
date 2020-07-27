@@ -9,15 +9,16 @@ import {Errors} from '../styles/AddPlantStyles'
 
 const AddPlant = () => {
     const initialFormValues = {
-        nickname: '',
+        name: '',
         species: '',
-        water: ''
+        water_frequency: '',
+        image: ''
     }
 
     const initialErrorValues = {
-        nickname: '',
+        name: '',
         species: '',
-        water: ''
+        water_frequency: ''
     }
 
     const [formValues, setValues] = useState(initialFormValues);
@@ -64,19 +65,19 @@ const AddPlant = () => {
     return(
       <div>
         <Errors>
-            <p>{errorValues.nickname}</p>
+            <p>{errorValues.name}</p>
             <p>{errorValues.species}</p>
-            <p>{errorValues.water}</p>
+            <p>{errorValues.water_frequency}</p>
         </Errors>
         <form onSubmit={submitForm}>
-            <label htmlFor='nickname'>
-                Plant Nickname: &nbsp;
+            <label htmlFor='name'>
+                Plant name: &nbsp;
                 <input 
-                    id='nickname'
-                    name='nickname'
+                    id='name'
+                    name='name'
                     type='text'
                     onChange={changeHandler}
-                    value={formValues.nickname}
+                    value={formValues.name}
                 />
             </label>
             <label htmlFor="species">
@@ -89,14 +90,14 @@ const AddPlant = () => {
                     value={formValues.species}
                 />
             </label>
-            <label htmlFor='water'>
+            <label htmlFor='water_frequency'>
                 Plant Water Frequency: &nbsp;
                 <input 
-                    id='water'
-                    name='water'
+                    id='water_frequency'
+                    name='water_frequency'
                     type='text'
                     onChange={changeHandler}
-                    value={formValues.water}
+                    value={formValues.water_frequency}
                 />
             </label>
             <button id="submit" disabled={btnDisabled}>Add Plant</button>
