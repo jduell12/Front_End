@@ -1,17 +1,60 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import * as Yup from 'yup';
+
+//formSchema
+import formSchema from '../validation/addPlantFormSchema';
+
+//styles
+import {Errors} from '../styles/AddPlantStyles'
 
 const AddPlant = () => {
-    const blankFormValues = {
+    const initialFormValues = {
         nickname: '',
         species: '',
         water: ''
     }
 
-    const [formValues, setValues] = useState(blankFormValues);
+    const initialErrorValues = {
+        nickname: '',
+        species: '',
+        water: ''
+    }
+
+    const [formValues, setValues] = useState(initialFormValues);
+    const [errorValues, setErrors] = useState(initialErrorValues);
     const [btnDisabled, setDisabled] = useState(true);
 
-    const changeHandler = event => {
+    useEffect(() => {
+        formSchema.isValid(formValues).then(valid => {
+            setDisabled(!valid);
+        })
+    }, [formValues])
 
+    const changeHandler = event => {
+        const name = event.target.name;
+        const value = event.target.value;
+
+        //validate form values with YUP
+        Yup
+            .reach(formSchema, name)
+            .validate(value)
+            .then(() => {
+                setErrors({
+                    ...errorValues,
+                    [name]: ''
+                })
+            })
+            .catch(err => {
+                setErrors({
+                    ...errorValues,
+                    [name]: err.errors[0]
+                })
+            })
+
+        setValues({
+            ...formValues,
+            [name]: value
+        })
     }
 
     const submitForm = event => {
@@ -19,6 +62,12 @@ const AddPlant = () => {
     }
 
     return(
+      <div>
+        <Errors>
+            <p>{errorValues.nickname}</p>
+            <p>{errorValues.species}</p>
+            <p>{errorValues.water}</p>
+        </Errors>
         <form onSubmit={submitForm}>
             <label htmlFor='nickname'>
                 Plant Nickname: &nbsp;
@@ -52,6 +101,7 @@ const AddPlant = () => {
             </label>
             <button id="submit" disabled={btnDisabled}>Add Plant</button>
         </form>
+      </div>
     )
 }
 
