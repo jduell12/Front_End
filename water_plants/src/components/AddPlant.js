@@ -1,6 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import * as Yup from 'yup';
 import {axiosWithAuth} from '../utils/axiosWithAuth'
+
+//context
+import {PlantContext} from '../context/PlantContext'
 
 //formSchema
 import formSchema from '../validation/addPlantFormSchema';
@@ -9,6 +12,7 @@ import formSchema from '../validation/addPlantFormSchema';
 import {Errors} from '../styles/AddPlantStyles'
 
 const AddPlant = () => {
+    //get context to update plant list on user page 
     const initialFormValues = {
         name: '',
         species: '',

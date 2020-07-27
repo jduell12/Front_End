@@ -1,7 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import * as Yup from 'yup';
-
 import {axiosWithAuth} from '../utils/axiosWithAuth'
+
+//context
+import {PlantContext} from '../context/PlantContext'
 
 //form schema
 import plantSchema from '../validation/addPlantFormSchema';
