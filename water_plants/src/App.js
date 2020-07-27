@@ -19,11 +19,11 @@ const theme = createMuiTheme({
 function App() {
   //login form stuff
   const initialFormValues = {
-    email: "",
+    username: "",
     password: ""
   }
   const initialFormErrors = {
-    email: "",
+    username: "",
     password: ""
   }
   const initialUserValue = []
@@ -63,7 +63,7 @@ function App() {
 
   const submit = () => {
     const newUser = {
-      email: formValues.email.trim(),
+      username: formValues.username.trim(),
       password: formValues.password.trim()
     }
     postNewUser(newUser)

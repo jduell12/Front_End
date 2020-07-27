@@ -1,11 +1,10 @@
 import * as yup from 'yup'
 
 let schema = yup.object().shape({
-    email: yup
+    username: yup
         .string()
-        .email('Must provide valid email address')
-        .required("Email is required.")
-        .min(5, "Email must be at least 5 characters."),
+        .required("Username is required.")
+        .min(5, "Username must be at least 5 characters."),
     password: yup
         .string()
         .required('Password is required.')

@@ -93,11 +93,11 @@ const onSubmit = evt => {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              value={values.email}
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              value={values.username}
+              autoComplete="username"
               autoFocus
               onChange={onInputChange}
             />
@@ -115,7 +115,7 @@ const onSubmit = evt => {
               onChange = {onInputChange}
             />
             <div>
-                    <div>{errors.email}</div>
+                    <div>{errors.username}</div>
                     <div>{errors.password}</div>
                 </div>
             {/* <FormControlLabel
