@@ -9,13 +9,13 @@ describe('Add Plant form loads with no data and the button disabled', () => {
     });
 
     it('form loads and is blank', () => {
-        cy.get('#nickname')
+        cy.get('#name')
           .should('be.empty');
     
         cy.get('#species')
             .should('be.empty');
         
-        cy.get('#water')
+        cy.get('#water_frequency')
             .should('be.empty');
 
         cy.get('button#submit')
@@ -32,9 +32,12 @@ describe('Form has proper validation', () => {
     });
 
     it('enters data into the form and gets appropiate error messages', () => {
-        cy.get('#nickname')
-            .type('nickname')
-            .should('have.value', 'nickname');
+        cy.get('#name')
+            .type('name')
+            .should('have.value', 'name')
+            .clear();
+        cy.get('body')
+            .contains('Must include a name.');
 
         //types into species input and then clears input to get error message
         cy.get('#species')
@@ -46,8 +49,8 @@ describe('Form has proper validation', () => {
         cy.get('body')
             .contains('Must include a plant species')
 
-        //types into water input and then clears input to get error message
-        cy.get('#water')
+        //types into water_frequency input and then clears input to get error message
+        cy.get('#water_frequency')
             .type('1 hour')
             .should('have.value', '1 hour')
             .clear();
@@ -70,8 +73,8 @@ describe('Can enter data into form and submit button is disabled until all requi
             .should('be.disabled')
     })
 
-    it('enters data into nickname input and submit button is still disabled', () => {
-        cy.get('#nickname')
+    it('enters data into name input and submit button is still disabled', () => {
+        cy.get('#name')
             .type('Franky')
             .should('have.value', 'Franky');
 
@@ -88,8 +91,8 @@ describe('Can enter data into form and submit button is disabled until all requi
             .should('be.disabled');
     })
 
-    it('enters data into water input and submit button is not disabled', () => {
-        cy.get('#water')
+    it('enters data into water_frequency input and submit button is not disabled', () => {
+        cy.get('#water_frequency')
             .type('1 hour')
             .should('have.value', '1 hour');
         
@@ -106,13 +109,13 @@ describe('Enters valid data into form, submit data and is directed to user plant
     });
 
     it('enters data into form input fields and submits the form', () => {
-        cy.get('#nickname')
+        cy.get('#name')
             .type('Franky');
 
         cy.get('#species')
             .type('Aeonium');
 
-        cy.get('#water')
+        cy.get('#water_frequency')
             .type('1x month');
 
         cy.get('#submit').click();

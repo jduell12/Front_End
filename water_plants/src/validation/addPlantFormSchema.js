@@ -1,12 +1,13 @@
 import * as Yup from 'yup';
 
 const addPlantFormSchema = Yup.object().shape({
-    nickname: Yup
-        .string(),
+    name: Yup
+        .string()
+        .required("Must include a name."),
     species: Yup
         .string()
         .required("Must include a plant species."),
-    water: Yup
+    water_frequency: Yup
         .string()
         .required("Must include watering schedule for plant.")
 });

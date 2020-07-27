@@ -1,5 +1,5 @@
 //Hernandez
-import React from 'react';
+import React from './node_modules/react';
 
 export default function Plant(props){
     // ,may need to add prop for img from API
