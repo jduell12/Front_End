@@ -1,5 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import * as Yup from 'yup';
+import {axiosWithAuth} from '../utils/axiosWithAuth'
+
+//context
+import {PlantContext} from '../context/PlantContext'
 
 //formSchema
 import formSchema from '../validation/addPlantFormSchema';
@@ -8,16 +12,18 @@ import formSchema from '../validation/addPlantFormSchema';
 import {Errors} from '../styles/AddPlantStyles'
 
 const AddPlant = () => {
+    //get context to update plant list on user page 
     const initialFormValues = {
-        nickname: '',
+        name: '',
         species: '',
-        water: ''
+        water_frequency: '',
+        image: ''
     }
 
     const initialErrorValues = {
-        nickname: '',
+        name: '',
         species: '',
-        water: ''
+        water_frequency: ''
     }
 
     const [formValues, setValues] = useState(initialFormValues);
@@ -59,24 +65,34 @@ const AddPlant = () => {
 
     const submitForm = event => {
         event.preventDefault();
+
+        axiosWithAuth()
+            .post('', formValues)
+            .then(res => {
+                //getting updated plant list - context and route to user landing page
+            })
+            .catch(err => console.log(err))
+            .finally(
+                setValues(initialFormValues)
+            )
     }
 
     return(
       <div>
         <Errors>
-            <p>{errorValues.nickname}</p>
+            <p>{errorValues.name}</p>
             <p>{errorValues.species}</p>
-            <p>{errorValues.water}</p>
+            <p>{errorValues.water_frequency}</p>
         </Errors>
         <form onSubmit={submitForm}>
-            <label htmlFor='nickname'>
-                Plant Nickname: &nbsp;
+            <label htmlFor='name'>
+                Plant name: &nbsp;
                 <input 
-                    id='nickname'
-                    name='nickname'
+                    id='name'
+                    name='name'
                     type='text'
                     onChange={changeHandler}
-                    value={formValues.nickname}
+                    value={formValues.name}
                 />
             </label>
             <label htmlFor="species">
@@ -89,14 +105,14 @@ const AddPlant = () => {
                     value={formValues.species}
                 />
             </label>
-            <label htmlFor='water'>
+            <label htmlFor='water_frequency'>
                 Plant Water Frequency: &nbsp;
                 <input 
-                    id='water'
-                    name='water'
+                    id='water_frequency'
+                    name='water_frequency'
                     type='text'
                     onChange={changeHandler}
-                    value={formValues.water}
+                    value={formValues.water_frequency}
                 />
             </label>
             <button id="submit" disabled={btnDisabled}>Add Plant</button>

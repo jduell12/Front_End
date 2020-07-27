@@ -1,7 +1,7 @@
 import React from 'react';
 
 //components
-import {PrivateRoute, AddPlant} from './components'
+import {PrivateRoute, AddPlant, EditPlant} from './components'
 
 
 function App() {
@@ -11,7 +11,8 @@ function App() {
         <PrivateRoute exact path = "/private/userplant" component ={} />
         <PrivateRoute exact path = "/private/user" component ={} />
         <PrivateRoute exact path = "/private/edituser" component ={} />
-        <PrivateRoute exact path = "/private/editplant" component ={} />
+        <PrivateRoute exact path = "/private/editplant" component ={EditPlant} />
+        <PrivateRoute exact path = "/private/addplant" component= {AddPlant} />
       */}
     </div>
   );

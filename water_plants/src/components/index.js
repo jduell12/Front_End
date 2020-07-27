@@ -1,4 +1,5 @@
 import PrivateRoute from './PrivateRoute';
-import AddPlant from './AddPlant'
+import AddPlant from './AddPlant';
+import EditPlant from './EditPlant';
 
-export {PrivateRoute, AddPlant};
+export {PrivateRoute, AddPlant, EditPlant};
