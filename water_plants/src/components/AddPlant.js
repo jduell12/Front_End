@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import * as Yup from 'yup';
-import axios from 'axios';
+import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 //formSchema
 import formSchema from '../validation/addPlantFormSchema';
@@ -62,7 +62,15 @@ const AddPlant = () => {
     const submitForm = event => {
         event.preventDefault();
 
-
+        axiosWithAuth()
+            .post('', formValues)
+            .then(res => {
+                //getting updated plant list - context and route to user landing page
+            })
+            .catch(err => console.log(err))
+            .finally(
+                setValues(initialFormValues)
+            )
     }
 
     return(

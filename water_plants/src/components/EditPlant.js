@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import * as Yup from 'yup';
 
+import {axiosWithAuth} from '../utils/axiosWithAuth'
+
 //form schema
 import plantSchema from '../validation/addPlantFormSchema';
 
@@ -8,9 +10,8 @@ import plantSchema from '../validation/addPlantFormSchema';
 import {Errors} from '../styles/AddPlantStyles'
 
 
-//context to grab plant information to populate form 
-
 const EditPlant = () => {
+    //context to grab plant information to populate form 
     const initialFormErrors = {
         name: '',
         species: '',
@@ -63,6 +64,13 @@ const EditPlant = () => {
 
     const submitForm = event => {
         event.preventDefault();
+
+        axiosWithAuth()
+            .put('', formValues)
+            .then(res => {
+                //get updated plant information
+            })
+            .catch(err => console.log(err))
     }
 
     return(
