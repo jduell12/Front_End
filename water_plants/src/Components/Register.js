@@ -1,6 +1,6 @@
 //Hernandez
 
-import React from 'react'
+import React from './node_modules/react'
 
 export default function Register(props){
     // Props passed in from apps for use in page functions
