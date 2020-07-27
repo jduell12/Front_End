@@ -1,7 +1,13 @@
-import React from 'react';
+import React from 'react'
+import { Switch, Link, Route } from 'react-router-dom'
 
 //components
 import {PrivateRoute, AddPlant} from './components'
+import Register from './Components/Register'
+import Plantlanding from './Components/Plantlanding'
+import Plant from './Components/Plant'
+import Addplant from './Components/AddPlant'
+
 
 
 function App() {
@@ -13,6 +19,29 @@ function App() {
         <PrivateRoute exact path = "/private/edituser" component ={} />
         <PrivateRoute exact path = "/private/editplant" component ={} />
       */}
+      <div className='nav-links'>
+        <Link to='/'>Home</Link>
+        <Link to='/register'>Register</Link> 
+      </div>
+    
+    {/* Switch for endpoints */}
+    <Switch path='/addplant'>
+      <Route>
+        <AddPlant/>
+      </Route>
+      <Route path='/plantlanding'>
+        <Plantlanding />
+      </Route>
+
+      <Route path='/register'>
+        <Register/>
+      </Route>
+
+      <Route path='/'>
+        {/* < /> Home component?*/}
+      </Route>
+    </Switch>
+
     </div>
   );
 }
