@@ -1,4 +1,5 @@
-
+/*eslint no-undef: */
+/// <reference types="Cypress" />
 
 describe('Add Plant form loads with no data and the button disabled', () => {
     it('navigates to the page', () => {
