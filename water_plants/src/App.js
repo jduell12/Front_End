@@ -1,7 +1,7 @@
 import React from 'react';
 
 //components
-import {PrivateRoute} from './components'
+import {PrivateRoute, AddPlant} from './components'
 
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
         <PrivateRoute exact path = "/private/edituser" component ={} />
         <PrivateRoute exact path = "/private/editplant" component ={} />
       */}
+      <AddPlant />
     </div>
   );
 }
