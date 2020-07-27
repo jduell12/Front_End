@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { Switch, Link, Route } from 'react-router-dom'
 import * as yup from 'yup';
 import schema from './validation/formSchema';
 import SignInSide from './material-ui/SignInSide';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
+
 //components
 import {PrivateRoute, AddPlant, EditPlant} from './components'
 
@@ -15,6 +17,8 @@ const theme = createMuiTheme({
     secondary: pink,
   }
 });
+
+
 
 function App() {
   //login form stuff
@@ -82,6 +86,29 @@ function App() {
         <PrivateRoute exact path = "/private/editplant" component ={EditPlant} />
         <PrivateRoute exact path = "/private/addplant" component= {AddPlant} />
       */}
+      <div className='nav-links'>
+        <Link to='/'>Home</Link>
+        <Link to='/register'>Register</Link> 
+      </div>
+    
+    {/* Switch for endpoints */}
+      <Switch path='/addplant'>
+        <Route>
+          <AddPlant/>
+        </Route>
+        <Route path='/plantlanding'>
+          {/* <Plantlanding /> */}
+        </Route>
+
+        <Route path='/register'>
+          {/* <Register/> */}
+        </Route>
+
+        <Route path='/'>
+          {/* < /> Home component?*/}
+        </Route>
+      </Switch>
+
       <ThemeProvider theme={theme} >
         <SignInSide
           submit={submit}
@@ -91,6 +118,7 @@ function App() {
           disabled={disabled}
         />
       </ThemeProvider>
+
     </div>
   );
 }
