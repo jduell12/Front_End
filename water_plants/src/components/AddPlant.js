@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import * as Yup from 'yup';
+import React, {useState, useEffect} from './node_modules/react';
+import * as Yup from './node_modules/yup';
 
 //formSchema
 import formSchema from '../validation/addPlantFormSchema';
