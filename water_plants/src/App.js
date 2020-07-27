@@ -3,10 +3,7 @@ import { Switch, Link, Route } from 'react-router-dom'
 
 //components
 import {PrivateRoute, AddPlant} from './components'
-import Register from './Components/Register'
-import Plantlanding from './Components/Plantlanding'
-import Plant from './Components/Plant'
-import Addplant from './Components/AddPlant'
+
 
 
 
@@ -25,22 +22,22 @@ function App() {
       </div>
     
     {/* Switch for endpoints */}
-    <Switch path='/addplant'>
-      <Route>
-        <AddPlant/>
-      </Route>
-      <Route path='/plantlanding'>
-        <Plantlanding />
-      </Route>
+      <Switch path='/addplant'>
+        <Route>
+          <AddPlant/>
+        </Route>
+        <Route path='/plantlanding'>
+          {/* <Plantlanding /> */}
+        </Route>
 
-      <Route path='/register'>
-        <Register/>
-      </Route>
+        <Route path='/register'>
+          {/* <Register/> */}
+        </Route>
 
-      <Route path='/'>
-        {/* < /> Home component?*/}
-      </Route>
-    </Switch>
+        <Route path='/'>
+          {/* < /> Home component?*/}
+        </Route>
+      </Switch>
 
     </div>
   );

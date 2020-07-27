@@ -28,8 +28,9 @@ export default function Register(props){
 
     // build elements for form/ inputs for first name, last name, email, phone number, and password
     return(
-        <h2>Join WaterMyPlants Today!</h2>
+       
         <div className='registration'>
+            <h2>Join WaterMyPlants Today!</h2>
             <div className='errors-container'>
                 <div>{errors.firstname}</div>
                 <div>{errors.lastname}</div>
@@ -37,9 +38,9 @@ export default function Register(props){
                 <div>{errors.phone}</div>
                 <div>{errors.password}</div>
             </div>
-            <div
+
             <form>
-                <Label>First Name: &nbsp;
+                <label>First Name:&nbsp;
                     <input 
                         value={values.firstname}
                         onChange={onInputChange} // checkes
@@ -48,8 +49,9 @@ export default function Register(props){
                         name='firstname'
                         type='text'
                     />
-                </Label>
-                <Label>Last Name: &nbsp;
+
+                </label>
+                <label>Last Name: &nbsp;
                     <input 
                         value={values.lastname}
                         onChange={onInputChange}
@@ -58,8 +60,8 @@ export default function Register(props){
                         name='lastname'
                         type='text'
                     />
-                </Label>
-                <Label>E-Mail: &nbsp;
+                </label>
+                <label>E-Mail: &nbsp;
                     <input 
                         value={values.email}
                         onChange={onInputChange}
@@ -68,8 +70,8 @@ export default function Register(props){
                         name='email'
                         type='email'
                     />
-                </Label>
-                <Label>Phone Number: &nbsp;
+                </label>
+                <label>Phone Number: &nbsp;
                     <input 
                         value={values.phone}
                         onChange={onInputChange}
@@ -78,8 +80,8 @@ export default function Register(props){
                         name='phone'
                         type='text'
                     />
-                </Label>
-                <Label>Password &nbsp;
+                </label>
+                <label>Password &nbsp;
                     <input 
                         value={values.password}
                         onChange={onInputChange}
@@ -88,7 +90,7 @@ export default function Register(props){
                         name='password'
                         type='text'
                     />
-                </Label>
+                </label>
                 <button /*disabled={disabled}*/ >Submit</button>
             </form>
         </div>
