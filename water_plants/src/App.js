@@ -97,7 +97,7 @@ function App() {
           <Register />
         </Route>
         <Route exact path='/'>
-          {/* <ThemeProvider theme={theme} >
+          <ThemeProvider theme={theme} >
             <SignInSide
               submit={submit}
               values={formValues}
@@ -105,7 +105,7 @@ function App() {
               inputChange={inputChange}
               disabled={disabled}
             />
-          </ThemeProvider> */}
+          </ThemeProvider>
         </Route>
 
         {/* <PrivateRoute exact path ="/private/userplant" component={} />
