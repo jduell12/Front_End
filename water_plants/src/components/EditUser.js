@@ -128,7 +128,7 @@ const EditUser = () => {
                         value={formValues.phone} 
                     />
                 </label>
-                <button>Edit Information</button>
+                <button disabled={disabled}>Edit Information</button>
             </form>
         </div>
     )
