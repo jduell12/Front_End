@@ -115,8 +115,6 @@ function App() {
         <PrivateRoute exact path = "private/addplant" component={AddPlant} />
 
       </Switch>
-
-      <EditUser />
     </div>
   );
 }
