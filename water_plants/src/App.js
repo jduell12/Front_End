@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Link, Route } from 'react-router-dom'
+import { Switch, Link, Route, Redirect } from 'react-router-dom'
 import * as yup from 'yup';
+import axios from 'axios';
 import schema from './validation/formSchema';
 import SignInSide from './material-ui/SignInSide';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -61,8 +62,16 @@ function App() {
   }
   const postNewUser = (newUser) => {
     setUser([newUser, ...users])
-    setFormValues(initialFormValues)
-    console.log(users)
+
+    axios.post('', newUser)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => console.log(err))
+      .finally(
+        setFormValues(initialFormValues),
+        <Redirect to="/plantlanding" />
+      )  
   }
 
   const submit = () => {
@@ -77,6 +86,7 @@ function App() {
       setDisabled(!valid)
     }, [formValues])
   })
+
   return (
     <div className="App">
       <div className='nav-links'>
@@ -87,7 +97,7 @@ function App() {
       {/* Switch for endpoints */}
       <Switch>
         <Route exact path='/addplant'>
-          <AddPlant />
+          {/* <AddPlant /> */}
         </Route>
         <Route exact path='/plantlanding'>
           {/* <Plantlanding /> */}
