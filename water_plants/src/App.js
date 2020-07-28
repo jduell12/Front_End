@@ -9,7 +9,7 @@ import green from '@material-ui/core/colors/green';
 
 //components
 import {
-  PrivateRoute, AddPlant, EditPlant, EditUser, Register
+  PrivateRoute, AddPlant, EditPlant, EditUser, Register, Plantlanding
 } from './components'
 
 //making login screen color theme green
@@ -80,7 +80,7 @@ function App() {
   return (
     <div className="App">
       <div className='nav-links'>
-        <Link to='front-end website address'>Home</Link>
+        <Link to='/'>Home</Link>
         <Link to='/register'>Register</Link>
       </div>
 
@@ -89,15 +89,15 @@ function App() {
         <Route exact path='/addplant'>
           <AddPlant />
         </Route>
-        <Route exact path='/plantlanding'>
-          {/* <Plantlanding /> */}
-        </Route>
+        {/* <Route exact path='/plantlanding'>
+          <Plantlanding />
+        </Route> */}
 
-        <Route exact path='/register'>
-          <Register />
-        </Route>
+        <Route exact path='/register' component={Register}/>
+          {/* <Register inputChange={inputChange}/> */}
+        
         <Route exact path='/'>
-          {/* <ThemeProvider theme={theme} >
+          <ThemeProvider theme={theme} >
             <SignInSide
               submit={submit}
               values={formValues}
@@ -105,11 +105,11 @@ function App() {
               inputChange={inputChange}
               disabled={disabled}
             />
-          </ThemeProvider> */}
+          </ThemeProvider>
         </Route>
 
-        {/* <PrivateRoute exact path ="/private/userplant" component={} />
-        <PrivateRoute exact path = "/private/user" component={} /> */}
+        <PrivateRoute exact path ="/private/plantlanding" component={Plantlanding} />
+        {/* <PrivateRoute exact path = "/private/user" component={} /> */}
         <PrivateRoute exact path ="/private/edituser" component={EditUser} />
         <PrivateRoute exact path ="private/editplant" component={EditPlant} />
         <PrivateRoute exact path = "private/addplant" component={AddPlant} />

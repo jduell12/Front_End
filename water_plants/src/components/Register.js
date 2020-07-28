@@ -1,13 +1,15 @@
 //Hernandez
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect,} from "react";
 import axios from 'axios';
 import * as yup from 'yup'
+import { Redirect } from "react-router-dom";
 
 
 const initialFormValues = {
     firstname: '',
     lastname: '',
-    email: '',
+    primaryemail: '',
+    username: '',
     password: '',
     phone: ''
 }
@@ -16,17 +18,20 @@ const initialFormErrors = {
     firstname: '',
     lastname: '',
     email: '',
+    username: '',
     password: '',
     phone: ''
 }
 
-const initialUser = []
+// const initialUser = []
 const initialDisabled = true
 
 export default function Register(props){
     // Props passed in from apps for use in page functions
 
-      const [user, setUser] = useState(initialUser)
+      const {history} = props
+      
+      // const [user, setUser] = useState(initialUser)
       const [formValues, setFormValues] = useState(initialFormValues) 
       const [formErrors, setFormErrors] = useState(initialFormErrors) 
       const [disabled, setDisabled] = useState(initialDisabled)   
@@ -37,12 +42,15 @@ export default function Register(props){
                     .required('First Name is Required'),
         lastname: yup.string()
                     .min(4, 'Last Name must be at least 4 characters'),
-        email: yup.string()
+        primaryemail: yup.string()
                     .required()
-                    .min(8, 'Las must be at least 8 characters'),
+                    .min(8, 'E-mail must be at least 8 characters'),
+        username: yup.string()
+                      .required()
+                      .min(5, 'Username must be at least 5 characters'),
         password: yup.string()
                     .required('Password is Required')
-                    .min('Password must contain at least 8 characters'),
+                    .min(8, 'Password must contain at least 8 characters'),
         phone:yup.string()
                     .required('Phone Number is Required')
                     .min(10, 'Phone Number must contain 10 characters')
@@ -51,14 +59,21 @@ export default function Register(props){
 
     // prevents page from reloading & calls submit function from App.js
     const postNewUser = newUser => {
-        axios.post('https://reqres.in/api/users', newUser)
+        axios.post('https://watermyplantsdatabase.herokuapp.com/createnewuser', newUser)
           .then(res => {
-            console.log(res.data)
-            setFormValues(initialFormValues)
+            console.log(res)
+            localStorage.setItem('token',res.data.access_token)
           })
           .catch(err => {
+            // const
             debugger
           })
+          .finally(
+            setFormValues(initialFormValues),
+            // <Redirect to='/private/plantlanding'/>
+            history.push('/private/plantlanding')
+            // <Redirect to='/' />
+          )
       }
 
     const onSubmit = evt => {
@@ -66,14 +81,15 @@ export default function Register(props){
         submit()
       }
       const submit = () => {
-        const user = {
+        const newUser = {
           firstname: formValues.firstname.trim(),
           lastname: formValues.lastname.trim(),
-          email: formValues.email.trim(),
+          primaryemail: formValues.primaryemail.trim(),
+          username: formValues.username.trim(),
           password: formValues.password.trim(),
           phone: formValues.phone.trim()
         }
-        postNewUser(user)
+        postNewUser(newUser)
       }
       
       useEffect(() => {
@@ -117,7 +133,7 @@ export default function Register(props){
     // build elements for form/ inputs for first name, last name, email, phone number, and password
     return(
        
-        <div className='registration'>
+        <div className='registration' onSubmit={onSubmit}>
             <h2>Join WaterMyPlants Today!</h2>
             <div className='errors-container'>
                 <div>{formErrors.firstname}</div>
@@ -125,6 +141,7 @@ export default function Register(props){
                 <div>{formErrors.email}</div>
                 <div>{formErrors.phone}</div>
                 <div>{formErrors.password}</div>
+                {/* <div>{Email already taken}</div> */}
             </div>
 
             <form>
@@ -144,19 +161,26 @@ export default function Register(props){
                         value={formValues.lastname}
                         onChange={onInputChange}
                         placeholder='Last Name'
-                        maxlength='14'
                         name='lastname'
                         type='text'
                     />
                 </label>
                 <label>E-Mail: &nbsp;
                     <input 
-                        value={formValues.email}
+                        value={formValues.primaryemail}
                         onChange={onInputChange}
                         placeholder='E-mail'
-                        maxlength='14'
-                        name='email'
+                        name='primaryemail'
                         type='email'
+                    />
+                </label>
+                <label>Username &nbsp;
+                    <input 
+                        value={formValues.username}
+                        onChange={onInputChange}
+                        placeholder='Username'
+                        name='username'
+                        type='text'
                     />
                 </label>
                 <label>Phone Number: &nbsp;
@@ -164,7 +188,6 @@ export default function Register(props){
                         value={formValues.phone}
                         onChange={onInputChange}
                         placeholder='Phone Number'
-                        maxlength='14'
                         name='phone'
                         type='text'
                     />
@@ -174,7 +197,6 @@ export default function Register(props){
                         value={formValues.password}
                         onChange={onInputChange}
                         placeholder='Password'
-                        maxlength='14'
                         name='password'
                         type='text'
                     />
