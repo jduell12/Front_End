@@ -26,6 +26,8 @@ const initialDisabled = true
 export default function Register(props){
     // Props passed in from apps for use in page functions
 
+      // const {inputChange} = props
+      
       const [user, setUser] = useState(initialUser)
       const [formValues, setFormValues] = useState(initialFormValues) 
       const [formErrors, setFormErrors] = useState(initialFormErrors) 
