@@ -26,6 +26,8 @@ const initialDisabled = true
 export default function Register(props){
     // Props passed in from apps for use in page functions
 
+      // const {inputChange} = props
+      
       const [user, setUser] = useState(initialUser)
       const [formValues, setFormValues] = useState(initialFormValues) 
       const [formErrors, setFormErrors] = useState(initialFormErrors) 
@@ -39,10 +41,10 @@ export default function Register(props){
                     .min(4, 'Last Name must be at least 4 characters'),
         email: yup.string()
                     .required()
-                    .min(8, 'Las must be at least 8 characters'),
+                    .min(8, 'E-mail must be at least 8 characters'),
         password: yup.string()
                     .required('Password is Required')
-                    .min('Password must contain at least 8 characters'),
+                    .min(8, 'Password must contain at least 8 characters'),
         phone:yup.string()
                     .required('Phone Number is Required')
                     .min(10, 'Phone Number must contain 10 characters')
@@ -117,7 +119,7 @@ export default function Register(props){
     // build elements for form/ inputs for first name, last name, email, phone number, and password
     return(
        
-        <div className='registration'>
+        <div className='registration' onSubmit={onSubmit}>
             <h2>Join WaterMyPlants Today!</h2>
             <div className='errors-container'>
                 <div>{formErrors.firstname}</div>
@@ -144,7 +146,6 @@ export default function Register(props){
                         value={formValues.lastname}
                         onChange={onInputChange}
                         placeholder='Last Name'
-                        maxlength='14'
                         name='lastname'
                         type='text'
                     />
@@ -154,7 +155,6 @@ export default function Register(props){
                         value={formValues.email}
                         onChange={onInputChange}
                         placeholder='E-mail'
-                        maxlength='14'
                         name='email'
                         type='email'
                     />
@@ -164,7 +164,6 @@ export default function Register(props){
                         value={formValues.phone}
                         onChange={onInputChange}
                         placeholder='Phone Number'
-                        maxlength='14'
                         name='phone'
                         type='text'
                     />
@@ -174,7 +173,6 @@ export default function Register(props){
                         value={formValues.password}
                         onChange={onInputChange}
                         placeholder='Password'
-                        maxlength='14'
                         name='password'
                         type='text'
                     />
