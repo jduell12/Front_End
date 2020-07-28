@@ -9,7 +9,7 @@ import green from '@material-ui/core/colors/green';
 
 //components
 import {
-  PrivateRoute, AddPlant, EditPlant, EditUser
+  PrivateRoute, AddPlant, EditPlant, EditUser, Register
 } from './components'
 
 //making login screen color theme green
@@ -81,20 +81,31 @@ function App() {
     <div className="App">
       <div className='nav-links'>
         <Link to='front-end website address'>Home</Link>
-        <Link to='/register'>Register</Link> 
+        <Link to='/register'>Register</Link>
       </div>
-    
-    {/* Switch for endpoints */}
+
+      {/* Switch for endpoints */}
       <Switch>
         <Route exact path='/addplant'>
-          <AddPlant/>
+          <AddPlant />
         </Route>
         <Route exact path='/plantlanding'>
           {/* <Plantlanding /> */}
         </Route>
 
         <Route exact path='/register'>
-          {/* <Register/> */}
+          <Register />
+        </Route>
+        <Route exact path='/'>
+          <ThemeProvider theme={theme} >
+            <SignInSide
+              submit={submit}
+              values={formValues}
+              errors={formErrors}
+              inputChange={inputChange}
+              disabled={disabled}
+            />
+          </ThemeProvider>
         </Route>
         <Route exact path ="/">
           <ThemeProvider theme={theme} >
@@ -108,12 +119,16 @@ function App() {
           </ThemeProvider>
         </Route>
 
+<<<<<<< HEAD
         {/* <PrivateRoute exact path ="/private/userplant" component={} />
         <PrivateRoute exact path = "/private/user" component={} /> */}
         <PrivateRoute exact path ="/private/edituser" component={EditUser} />
         <PrivateRoute exact path ="private/editplant" component={EditPlant} />
         <PrivateRoute exact path = "private/addplant" component={AddPlant} />
       </Switch>
+=======
+
+>>>>>>> 4765a783e2f6d44e889d357114f7959fc9fedbac
 
       <EditUser />
     </div>
