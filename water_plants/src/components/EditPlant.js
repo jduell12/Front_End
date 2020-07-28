@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useContext} from './node_modules/react';
-import * as Yup from './node_modules/yup';
+import React, {useState, useEffect, useContext} from 'react';
+import * as Yup from 'yup';
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 //context
