@@ -86,11 +86,6 @@ function App() {
 
       {/* Switch for endpoints */}
       <Switch>
-        {/* <PrivateRoute exact path ="/private/userplant" component={} />
-        <PrivateRoute exact path = "/private/user" component={} /> */}
-        <PrivateRoute exact path="/private/edituser" component={EditUser} />
-        <PrivateRoute exact path="private/editplant" component={EditPlant} />
-        <PrivateRoute exact path="private/addplant" component={AddPlant} />
         <Route exact path='/addplant'>
           <AddPlant />
         </Route>
@@ -102,7 +97,7 @@ function App() {
           <Register />
         </Route>
         <Route exact path='/'>
-          <ThemeProvider theme={theme} >
+          {/* <ThemeProvider theme={theme} >
             <SignInSide
               submit={submit}
               values={formValues}
@@ -110,12 +105,16 @@ function App() {
               inputChange={inputChange}
               disabled={disabled}
             />
-          </ThemeProvider>
+          </ThemeProvider> */}
         </Route>
+
+        {/* <PrivateRoute exact path ="/private/userplant" component={} />
+        <PrivateRoute exact path = "/private/user" component={} /> */}
+        <PrivateRoute exact path ="/private/edituser" component={EditUser} />
+        <PrivateRoute exact path ="private/editplant" component={EditPlant} />
+        <PrivateRoute exact path = "private/addplant" component={AddPlant} />
+
       </Switch>
-
-
-
     </div>
   );
 }
