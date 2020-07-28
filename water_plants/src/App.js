@@ -119,16 +119,13 @@ function App() {
           </ThemeProvider>
         </Route>
 
-<<<<<<< HEAD
         {/* <PrivateRoute exact path ="/private/userplant" component={} />
         <PrivateRoute exact path = "/private/user" component={} /> */}
         <PrivateRoute exact path ="/private/edituser" component={EditUser} />
         <PrivateRoute exact path ="private/editplant" component={EditPlant} />
         <PrivateRoute exact path = "private/addplant" component={AddPlant} />
+        
       </Switch>
-=======
-
->>>>>>> 4765a783e2f6d44e889d357114f7959fc9fedbac
 
       <EditUser />
     </div>
