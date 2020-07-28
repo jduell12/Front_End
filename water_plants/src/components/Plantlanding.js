@@ -1,14 +1,14 @@
 //Hernandez
 import React, {useState, useEffect} from "react";
 import Plant from './Plant'
-import axios from 'axios';
-// import { Switch, Link, Route } from 'react-router-dom' //temp
-
+import {axiosWithAuth} from '../utils/axiosWithAuth'
+import { Switch, Link, Route } from 'react-router-dom'
 
 export default function Plantlanding(props){
     const [plants, setPlants] = useState([])
 
-    axios.get('url')
+    axiosWithAuth()
+    .get('https://watermyplantsdatabase.herokuapp.com/myinfo') 
         .then(res => {
             setPlants(res.data)
         })
@@ -20,6 +20,9 @@ export default function Plantlanding(props){
     return(
         <div className='plant-page'>
             <h2> Your Plants!</h2>
+            <button>
+                <Link to="/private/addplant">Add Plant</Link>   
+            </button>
 
             <div className='card-holder'>
                 {
