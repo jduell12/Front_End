@@ -124,7 +124,7 @@ function App() {
         <PrivateRoute exact path ="/private/edituser" component={EditUser} />
         <PrivateRoute exact path ="private/editplant" component={EditPlant} />
         <PrivateRoute exact path = "private/addplant" component={AddPlant} />
-        
+
       </Switch>
 
       <EditUser />
