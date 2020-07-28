@@ -78,6 +78,56 @@ const EditUser = () => {
                 <p>{formErrors.phone}</p>
             </Errors>
             <form onSubmit={submitForm}>
+                <label htmlFor="editUsername">
+                    Username: &nbsp;
+                    <input 
+                        id="editUsername"
+                        name="username"
+                        type="text"
+                        onChange={changeHandler}
+                        value={formValues.username}
+                    />
+                </label>
+                <label htmlFor="editFirt">
+                    First Name: &nbsp;
+                    <input 
+                        id="editFirst"
+                        name="firstname"
+                        type="text"
+                        onChange={changeHandler}
+                        value={formValues.firstname}
+                    />
+                </label>
+                <label htmlFor="editLast">
+                    Last Name: &nbsp;
+                    <input 
+                        id="editLast"
+                        name="lastname"
+                        type="text"
+                        onChange={changeHandler}
+                        value={formValues.lastname} 
+                    />
+                </label>
+                <label htmlFor="editEmail">
+                    Email: &nbsp;
+                    <input 
+                        id="editEmail"
+                        name="email"
+                        type="primaryemail"
+                        onChange={changeHandler}
+                        value={formValues.primaryemail}
+                    />
+                </label>
+                <label htmlFor="editPhone">
+                    Phone: &nbsp;
+                    <input 
+                        id="editPhone"
+                        name="phone"
+                        type="text"
+                        onChange={changeHandler}
+                        value={formValues.phone} 
+                    />
+                </label>
                 <button>Edit Information</button>
             </form>
         </div>
