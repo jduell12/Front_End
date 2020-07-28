@@ -8,7 +8,9 @@ import pink from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
 //components
-import {PrivateRoute, AddPlant, EditPlant} from './components'
+import {
+  PrivateRoute, AddPlant, EditPlant, EditUser
+} from './components'
 
 //making login screen color theme green
 const theme = createMuiTheme({
@@ -17,8 +19,6 @@ const theme = createMuiTheme({
     secondary: pink,
   }
 });
-
-
 
 function App() {
   //login form stuff
@@ -79,33 +79,27 @@ function App() {
   })
   return (
     <div className="App">
-      {/*
-        <PrivateRoute exact path = "/private/userplant" component ={} />
-        <PrivateRoute exact path = "/private/user" component ={} />
-        <PrivateRoute exact path = "/private/edituser" component ={} />
-        <PrivateRoute exact path = "/private/editplant" component ={EditPlant} />
-        <PrivateRoute exact path = "/private/addplant" component= {AddPlant} />
-      */}
       <div className='nav-links'>
-        <Link to='/'>Home</Link>
+        <Link to='front-end website address'>Home</Link>
         <Link to='/register'>Register</Link> 
       </div>
     
     {/* Switch for endpoints */}
-      <Switch path='/addplant'>
-        <Route>
+      <Switch>
+        {/* <PrivateRoute exact path ="/private/userplant" component={} />
+        <PrivateRoute exact path = "/private/user" component={} /> */}
+        <PrivateRoute exact path ="/private/edituser" component={EditUser} />
+        <PrivateRoute exact path ="private/editplant" component={EditPlant} />
+        <PrivateRoute exact path = "private/addplant" component={AddPlant} />
+        <Route exact path='/addplant'>
           <AddPlant/>
         </Route>
-        <Route path='/plantlanding'>
+        <Route exact path='/plantlanding'>
           {/* <Plantlanding /> */}
         </Route>
 
-        <Route path='/register'>
+        <Route exact path='/register'>
           {/* <Register/> */}
-        </Route>
-
-        <Route path='/'>
-          {/* < /> Home component?*/}
         </Route>
       </Switch>
 
