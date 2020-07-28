@@ -112,7 +112,7 @@ const EditUser = () => {
                     Email: &nbsp;
                     <input 
                         id="editEmail"
-                        name="email"
+                        name="primaryemail"
                         type="primaryemail"
                         onChange={changeHandler}
                         value={formValues.primaryemail}
@@ -128,7 +128,7 @@ const EditUser = () => {
                         value={formValues.phone} 
                     />
                 </label>
-                <button disabled={disabled}>Edit Information</button>
+                <button id="editUserBtn" disabled={disabled}>Edit Information</button>
             </form>
         </div>
     )
