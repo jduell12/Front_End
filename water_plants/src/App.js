@@ -89,13 +89,13 @@ function App() {
         <Route exact path='/addplant'>
           <AddPlant />
         </Route>
-        <Route exact path='/plantlanding'>
+        {/* <Route exact path='/plantlanding'>
           <Plantlanding />
-        </Route>
+        </Route> */}
 
-        <Route exact path='/register'>
-          <Register inputChange={inputChange}/>
-        </Route>
+        <Route exact path='/register' component={Register}/>
+          {/* <Register inputChange={inputChange}/> */}
+        
         <Route exact path='/'>
           <ThemeProvider theme={theme} >
             <SignInSide
@@ -108,8 +108,8 @@ function App() {
           </ThemeProvider>
         </Route>
 
-        {/* <PrivateRoute exact path ="/private/userplant" component={} />
-        <PrivateRoute exact path = "/private/user" component={} /> */}
+        <PrivateRoute exact path ="/private/plantlanding" component={Plantlanding} />
+        {/* <PrivateRoute exact path = "/private/user" component={} /> */}
         <PrivateRoute exact path ="/private/edituser" component={EditUser} />
         <PrivateRoute exact path ="private/editplant" component={EditPlant} />
         <PrivateRoute exact path = "private/addplant" component={AddPlant} />
