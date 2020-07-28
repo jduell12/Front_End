@@ -1,5 +1,7 @@
 //Hernandez
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Switch, Link, Route } from 'react-router-dom'
+
 
 export default function Plant(props){
     // ,may need to add prop for img from API
@@ -8,6 +10,8 @@ export default function Plant(props){
     return(
         <div className='plant-card'>
             <h3>{plant.name}</h3>
+
+         
             {/* possibly img from API based on species */}
             <div className='plant-details'>
                 <p>{plant.id}</p>
@@ -16,9 +20,12 @@ export default function Plant(props){
                 <p>{plant.lwd}</p>
             </div>
             <div className='buttons'>
-                <button>Edit</button>
-                <button>Delete</button>
+                <button>
+                <Link to="/private/editplant">Edit</Link>   
+                </button>
+                {/* <button onclick={delete}>Delete</button> */}
             </div>
+           
         </div>
     )
         

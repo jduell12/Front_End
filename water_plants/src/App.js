@@ -10,7 +10,7 @@ import green from '@material-ui/core/colors/green';
 
 //components
 import {
-  PrivateRoute, AddPlant, EditPlant, EditUser, Register
+  PrivateRoute, AddPlant, EditPlant, EditUser, Register, Plantlanding
 } from './components'
 
 //making login screen color theme green
@@ -90,7 +90,7 @@ function App() {
   return (
     <div className="App">
       <div className='nav-links'>
-        <Link to='front-end website address'>Home</Link>
+        <Link to='/'>Home</Link>
         <Link to='/register'>Register</Link>
       </div>
 
@@ -100,11 +100,11 @@ function App() {
           {/* <AddPlant /> */}
         </Route>
         <Route exact path='/plantlanding'>
-          {/* <Plantlanding /> */}
+          <Plantlanding />
         </Route>
 
         <Route exact path='/register'>
-          <Register />
+          <Register inputChange={inputChange}/>
         </Route>
         <Route exact path='/'>
           <ThemeProvider theme={theme} >
