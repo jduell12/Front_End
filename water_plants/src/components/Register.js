@@ -69,9 +69,7 @@ export default function Register(props){
           })
           .finally(
             setFormValues(initialFormValues),
-            // <Redirect to='/private/plantlanding'/>
-            history.push('/private/plantlanding')
-            // <Redirect to='/' />
+            history.push('/')
           )
       }
 

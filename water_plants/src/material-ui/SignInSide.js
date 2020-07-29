@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {history} from 'react';
+import axios from 'axios';
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -71,10 +73,24 @@ export default function SignInSide(props) {
     const {name, value} = evt.target
     inputChange(name, value)
 }
-const onSubmit = evt => {
-    evt.preventDefault()
-    submit()
+
+const signIn = event => {
+  event.preventDefault();
+
+  axios.post('https://watermyplantsdatabase.herokuapp.com/login', `grant_type=password&username=${values.username}&password=${values.password}`, {
+      headers: {
+        // btoa is converting our client id/client secret into base64
+        Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    })
+    .then(res => {
+      localStorage.setItem('token', res.data.token);
+      history.push('/plantlanding');
+    })
+    .catch(err => console.log(err))
 }
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -87,7 +103,7 @@ const onSubmit = evt => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form onSubmit={onSubmit} className={classes.form} noValidate>
+          <form onSubmit={signIn} className={classes.form} noValidate>
             <TextField
               variant="outlined"
               margin="normal"
