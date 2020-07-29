@@ -14,12 +14,14 @@ import {
 
 function App() {
   const [userInfo, setUserInfo] = useState({});
+  const [plantList, setPlants] = useState([]);
 
     useEffect(() => {
         axiosWithAuth()
             .get('https://watermyplantsdatabase.herokuapp.com/myinfo') 
             .then(res => {
                 setUserInfo(res.data);
+                setPlants(res.data.plants);
             })
             .catch(err => {
                 console.log(err)
@@ -40,7 +42,7 @@ function App() {
           {/* <Register inputChange={inputChange}/> */}
           
 
-        <UserContext.Provider value={{userInfo}}>
+        <UserContext.Provider value={{userInfo, plantList}}>
           <Route exact path='/signin'  component={SignInSide}/>
           <PrivateRoute exact path ="/" component={Plantlanding} />
           {/* <PrivateRoute exact path = "/private/user" component={} /> */}

@@ -12,24 +12,18 @@ export default function Plantlanding(){
     const {userInfo} = useContext(UserContext);
     const {plants} = userInfo;
 
-    const [plantList, setPlants] = useState([]);
-    
-    useEffect(() => {
-        setPlants(plants);
-    }, [userInfo])
-
     return(
         <div className='plant-page'>
             <h2> Your Plants!</h2>
             <Link to="/private/addplant"><button>Add Plant </button></Link>
-            {!plantList ? <span></span> : 
+            {!plants ? <span></span> : 
                 (
             <div>
                 {
-                    !plantList.length ? (<span></span>) : (
+                    !plants.length ? (<span></span>) : (
                         <div className='card-holder'>
                             {
-                             plantList.map(plant => <Plant key={plant.plants.plantid} plant={plant.plants}/>)
+                             plants.map(plant => <Plant key={plant.plants.plantid} plant={plant.plants}/>)
                             }
                         </div>
                     )

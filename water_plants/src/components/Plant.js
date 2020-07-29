@@ -1,36 +1,37 @@
 //Hernandez
-import React, { useEffect, useState } from 'react';
-import { Switch, Link, Route } from 'react-router-dom'
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom'
+
+import {UserContext} from '../context/UserContext'
 
 
 export default function Plant(props){
+    const {userInfo} = useContext(UserContext);
 
-    // const delete = () =>{
-
-    // }
     // ,may need to add prop for img from API
     const {plant} = props
     const {plantid, name, water_frequency, species} = plant;
 
+    const deletePlant = () => {
+        
+    }
+
     return(
         <div className='plant-card'>
             <h3>{name}</h3>
-            <button>
-                <Link to="/private/addplant">Add Plant</Link>   
-            </button>
          
             {/* possibly img from API based on species */}
             <div className='plant-details'>
                 {/* <p>{plant.id}</p> */}
-                <p>{plant.frequency}</p>
-                <p>{plant.species}</p>
+                <p>{water_frequency}</p>
+                <p>{species}</p>
                 {/* <p>{plant.lwd}</p> */}
             </div>
             <div className='buttons'>
                 <button>
                 <Link to="/private/editplant">Edit</Link>   
                 </button>
-                {/* <button onclick={delete}>Delete</button> */}
+                <button onClick={deletePlant}>Delete</button>
             </div>
            
         </div>
