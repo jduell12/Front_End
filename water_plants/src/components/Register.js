@@ -1,8 +1,7 @@
 //Hernandez
 import React, {useState, useEffect,} from "react";
 import axios from 'axios';
-import * as yup from 'yup'
-import { Redirect } from "react-router-dom";
+import * as yup from 'yup';
 
 
 const initialFormValues = {

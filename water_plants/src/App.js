@@ -7,6 +7,10 @@ import SignInSide from './material-ui/SignInSide';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
+import {axiosWithAuth} from './utils/axiosWithAuth'
+
+//context
+import {UserContext} from './context/UserContext'
 
 //components
 import {
@@ -38,6 +42,7 @@ function App() {
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [formValues, setFormValues] = useState(initialFormValues)
   const [disabled, setDisabled] = useState(initialDisabled)
+  const [userInfo, setUserInfo] = useState({});
 
   const inputChange = (name, value) => {
     yup
@@ -81,32 +86,40 @@ function App() {
     }
     postNewUser(newUser)
   }
+
   useEffect(() => {
     schema.isValid(formValues).then(valid => {
       setDisabled(!valid)
     }, [formValues])
   })
 
+
+
+    useEffect(() => {
+        axiosWithAuth()
+            .get('https://watermyplantsdatabase.herokuapp.com/myinfo') 
+            .then(res => {
+                setUserInfo(res.data);
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, []); 
+
   return (
     <div className="App">
       <div className='nav-links'>
-        <Link to='/'>Home</Link>
+        <a href="https://cranky-hypatia-e034a5.netlify.app/">Home</a>
         <Link to='/register'>Register</Link>
       </div>
 
       {/* Switch for endpoints */}
       <Switch>
-        <Route exact path='/addplant'>
-          {/* <AddPlant /> */}
-        </Route>
-        {/* <Route exact path='/plantlanding'>
-          <Plantlanding />
-        </Route> */}
 
         <Route exact path='/register' component={Register}/>
           {/* <Register inputChange={inputChange}/> */}
         
-        <Route exact path='/'>
+        <Route exact path='/signin'>
           <ThemeProvider theme={theme} >
             <SignInSide
               submit={submit}
@@ -118,11 +131,13 @@ function App() {
           </ThemeProvider>
         </Route>
 
-        <PrivateRoute exact path ="/private/plantlanding" component={Plantlanding} />
-        {/* <PrivateRoute exact path = "/private/user" component={} /> */}
-        <PrivateRoute exact path ="/private/edituser" component={EditUser} />
-        <PrivateRoute exact path ="private/editplant" component={EditPlant} />
-        <PrivateRoute exact path = "private/addplant" component={AddPlant} />
+        <UserContext.Provider value={{userInfo}}>
+          <PrivateRoute exact path ="/" component={Plantlanding} />
+          {/* <PrivateRoute exact path = "/private/user" component={} /> */}
+          <PrivateRoute exact path ="/private/edituser" component={EditUser} />
+          <PrivateRoute exact path ="/private/editplant" component={EditPlant} />
+          <PrivateRoute exact path = "/private/addplant" component={AddPlant} />
+        </UserContext.Provider>
 
       </Switch>
     </div>

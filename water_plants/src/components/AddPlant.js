@@ -3,8 +3,7 @@ import * as Yup from 'yup';
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 //context
-import {PlantContext} from '../context/PlantContext'
-
+import {UserContext} from '../context/UserContext'
 
 //formSchema
 import formSchema from '../validation/addPlantFormSchema';
@@ -13,6 +12,8 @@ import formSchema from '../validation/addPlantFormSchema';
 import {Errors} from '../styles/AddPlantStyles'
 
 const AddPlant = () => {
+    const {userInfo} = useContext(UserContext);
+
     //get context to update plant list on user page 
     const initialFormValues = {
         name: '',
@@ -68,7 +69,7 @@ const AddPlant = () => {
         event.preventDefault();
 
         axiosWithAuth()
-            .post('', formValues)
+            // .post(` https://watermyplantsdatabase.herokuapp.com/plants/${USERID}`, formValues)
             .then(res => {
                 //getting updated plant list - context and route to user landing page
             })
