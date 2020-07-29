@@ -12,6 +12,7 @@ import {PlantContext} from './context/PlantContext';
 import {
   PrivateRoute, AddPlant, EditPlant, EditUser, Register, Plantlanding
 } from './components'
+import UserProfile from './components/UserProfile';
 
 function App() {
   const [userInfo, setUserInfo] = useState({});
@@ -35,6 +36,7 @@ function App() {
       <div className='nav-links'>
         <a href="https://cranky-hypatia-e034a5.netlify.app/">Home</a>
         <Link to='/register'>Register</Link>
+        <Link to='/private/user'>User Profile</Link>
       </div>
 
       {/* Switch for endpoints */}
@@ -42,11 +44,11 @@ function App() {
 
         <Route exact path='/register' component={Register}/>
           {/* <Register inputChange={inputChange}/> */}
-          
+        {/* <Route exact path='/userprofile' component={UserProfile}/> */}
 
         <UserContext.Provider value={{userInfo, plantList, setPlants}}>
           <Route exact path='/signin'  component={SignInSide}/>
-          {/* <PrivateRoute exact path = "/private/user" component={} /> */}
+          <PrivateRoute exact path = "/private/user" component={UserProfile} />
           <PrivateRoute exact path ="/private/edituser" component={EditUser} />
           <PrivateRoute exact path = "/private/addplant" component={AddPlant} />
           <PlantContext.Provider value={{plantId, setId}}>
