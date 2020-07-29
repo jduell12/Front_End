@@ -34,9 +34,9 @@ export default function UserProfile() {
         <ContainerDiv>
             <CardDiv>
                 <h1>Profile</h1>
-                <h2>Username: {user.username}</h2>
-                <h2>First Name: {user.firstname}</h2>
-                <h2>Last Name: {user.lastname}</h2>
+                <h2>{user.username}</h2>
+                <p>First Name: {user.firstname}</p>
+                <p>Last Name: {user.lastname}</p>
                 <p>email: {user.primaryemail}</p>
                 <p>phone: {user.phone}</p>
                 <div>
