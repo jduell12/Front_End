@@ -1,5 +1,5 @@
 //Hernandez
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import Plant from './Plant'
 import {AddPlant} from './'
@@ -12,7 +12,11 @@ export default function Plantlanding(){
     const {userInfo} = useContext(UserContext);
     const {plants} = userInfo;
 
-    const [plantList, setPlants] = useState(userInfo[plants]);
+    const [plantList, setPlants] = useState([]);
+    
+    useEffect(() => {
+        setPlants(plants);
+    }, [userInfo])
 
     return(
         <div className='plant-page'>
