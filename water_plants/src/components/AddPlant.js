@@ -1,10 +1,10 @@
 import React, {useState, useEffect, useContext} from 'react';
+import {useHistory} from 'react-router-dom';
 import * as Yup from 'yup';
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 //context
-import {PlantContext} from '../context/PlantContext'
-
+import {UserContext} from '../context/UserContext'
 
 //formSchema
 import formSchema from '../validation/addPlantFormSchema';
@@ -12,7 +12,11 @@ import formSchema from '../validation/addPlantFormSchema';
 //styles
 import {Errors} from '../styles/AddPlantStyles'
 
-const AddPlant = () => {
+const AddPlant = props => {
+    const {userInfo} = useContext(UserContext);
+    const {userid} = userInfo;
+    const history = useHistory();
+
     //get context to update plant list on user page 
     const initialFormValues = {
         name: '',
@@ -68,14 +72,15 @@ const AddPlant = () => {
         event.preventDefault();
 
         axiosWithAuth()
-            .post('', formValues)
+            .post(`/plants/${userid}`, formValues)
             .then(res => {
-                //getting updated plant list - context and route to user landing page
+                console.log(res);
             })
             .catch(err => console.log(err))
             .finally(
-                setValues(initialFormValues)
-            )
+                setValues(initialFormValues),
+                history.push('/')
+            );
     }
 
     return(
