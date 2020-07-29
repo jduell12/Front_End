@@ -17,7 +17,7 @@ export default function Plantlanding(){
     return(
         <div className='plant-page'>
             <h2> Your Plants!</h2>
-            <Link to="/private/addplant"><button>Add Plant </button></Link>
+             <Link to="/private/addplant"><button>Add Plant </button></Link>
             {!plants ? <span></span> : 
                 (
             <div>

@@ -35,6 +35,7 @@ export default function Plant(props){
     return(
         <div className='plant-card'>
             <h3>{name}</h3>
+
          
             {/* possibly img from API based on species */}
             <div className='plant-details'>
