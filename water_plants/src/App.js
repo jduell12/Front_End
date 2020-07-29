@@ -38,13 +38,10 @@ function App() {
 
         <Route exact path='/register' component={Register}/>
           {/* <Register inputChange={inputChange}/> */}
-        
-        <UserContext.Provider>
-          <Route exact path='/signin'  component={SignInSide}/>
-        </UserContext.Provider>
           
 
         <UserContext.Provider value={{userInfo}}>
+          <Route exact path='/signin'  component={SignInSide}/>
           <PrivateRoute exact path ="/" component={Plantlanding} />
           {/* <PrivateRoute exact path = "/private/user" component={} /> */}
           <PrivateRoute exact path ="/private/edituser" component={EditUser} />
