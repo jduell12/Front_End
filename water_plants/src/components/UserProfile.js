@@ -18,7 +18,8 @@ export default function UserProfile() {
         axiosWithAuth()
         .get('https://watermyplantsdatabase.herokuapp.com/myinfo')
         .then((resp) => {
-            console.log(resp.config.data)
+            console.log('RESP', resp.data)
+            setUser(resp.data)
         })
         .catch((err) => {
             console.log(err)
@@ -30,11 +31,11 @@ export default function UserProfile() {
         <div>
             <div>
                 <h1>Profile</h1>
-                <h2>Username</h2>
-                <h2>First Name</h2>
-                <h2>Last Name</h2>
-                <p>email</p>
-                <p>phone</p>
+                <h2>Username: {user.username}</h2>
+                <h2>First Name: {user.firstname}</h2>
+                <h2>Last Name: {user.lastname}</h2>
+                <p>email: {user.primaryemail}</p>
+                <p>phone: {user.phone}</p>
             </div>
             <div>
                 <button>Edit User Profile</button>
