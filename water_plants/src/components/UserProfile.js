@@ -16,7 +16,7 @@ export default function UserProfile() {
 
     useEffect(() => {
         axiosWithAuth()
-        .get('https://watermyplantsdatabase.herokuapp.com/myinfo')
+        .get('/myinfo')
         .then((resp) => {
             console.log('RESP', resp.data)
             setUser(resp.data)
@@ -39,6 +39,7 @@ export default function UserProfile() {
             </div>
             <div>
                 <button>Edit User Profile</button>
+                <button>Delete User Profile</button>
             </div>
         </div>
     )

@@ -29,14 +29,14 @@ function App() {
             .catch(err => {
                 console.log(err)
             })
-    }, [userInfo, plantList]); 
+    }, []); 
 
   return (
     <div className="App">
       <div className='nav-links'>
         <a href="https://cranky-hypatia-e034a5.netlify.app/">Home</a>
         <Link to='/register'>Register</Link>
-        <Link to='/userprofile'>User Profile</Link>
+        <Link to='/private/user'>User Profile</Link>
       </div>
 
       {/* Switch for endpoints */}
@@ -44,11 +44,11 @@ function App() {
 
         <Route exact path='/register' component={Register}/>
           {/* <Register inputChange={inputChange}/> */}
-        <Route exact path='/userprofile' component={UserProfile}/>
+        {/* <Route exact path='/userprofile' component={UserProfile}/> */}
 
         <UserContext.Provider value={{userInfo, plantList, setPlants}}>
           <Route exact path='/signin'  component={SignInSide}/>
-          {/* <PrivateRoute exact path = "/private/user" component={} /> */}
+          <PrivateRoute exact path = "/private/user" component={UserProfile} />
           <PrivateRoute exact path ="/private/edituser" component={EditUser} />
           <PrivateRoute exact path = "/private/addplant" component={AddPlant} />
           <PlantContext.Provider value={{plantId, setId}}>

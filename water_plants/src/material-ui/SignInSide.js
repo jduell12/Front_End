@@ -10,7 +10,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import Checkbox from '@material-ui/core/Checkbox';
-import Linkui from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -128,7 +127,7 @@ export default function SignInSide(props) {
       }
     })
     .then(res => {
-      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('token', res.data.access_token);
       props.history.push('/');
     })
     .catch(err => console.log(err))
