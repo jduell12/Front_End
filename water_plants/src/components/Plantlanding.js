@@ -29,7 +29,7 @@ export default function Plantlanding(){
                     !plantList.length ? (<span></span>) : (
                         <div className='card-holder'>
                             {
-                             plantList.map(plant => <Plant plant={plant}/>)
+                             plantList.map(plant => <Plant key={plant.plants.plantid} plant={plant.plants}/>)
                             }
                         </div>
                     )

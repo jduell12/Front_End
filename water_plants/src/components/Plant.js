@@ -10,20 +10,21 @@ export default function Plant(props){
     // }
     // ,may need to add prop for img from API
     const {plant} = props
+    const {plantid, name, water_frequency, species} = plant;
 
     return(
         <div className='plant-card'>
-            <h3>{plant.name}</h3>
+            <h3>{name}</h3>
             <button>
                 <Link to="/private/addplant">Add Plant</Link>   
             </button>
          
             {/* possibly img from API based on species */}
             <div className='plant-details'>
-                <p>{plant.id}</p>
+                {/* <p>{plant.id}</p> */}
                 <p>{plant.frequency}</p>
                 <p>{plant.species}</p>
-                <p>{plant.lwd}</p>
+                {/* <p>{plant.lwd}</p> */}
             </div>
             <div className='buttons'>
                 <button>
