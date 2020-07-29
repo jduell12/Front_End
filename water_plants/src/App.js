@@ -37,6 +37,7 @@ function App() {
         <a href="https://cranky-hypatia-e034a5.netlify.app/">Home</a>
         <Link to='/register'>Register</Link>
         <Link to='/private/user'>User Profile</Link>
+        <Link to="/">Plant Dashboard</Link>
       </div>
 
       {/* Switch for endpoints */}
@@ -46,7 +47,7 @@ function App() {
           {/* <Register inputChange={inputChange}/> */}
         {/* <Route exact path='/userprofile' component={UserProfile}/> */}
 
-        <UserContext.Provider value={{userInfo, plantList, setPlants}}>
+        <UserContext.Provider value={{userInfo, setUserInfo, plantList, setPlants}}>
           <Route exact path='/signin'  component={SignInSide}/>
           <PrivateRoute exact path = "/private/user" component={UserProfile} />
           <PrivateRoute exact path ="/private/edituser" component={EditUser} />

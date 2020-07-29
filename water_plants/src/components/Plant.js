@@ -25,6 +25,9 @@ export default function Plant(props){
             .catch(err => {
                 console.log(err);
             })
+            .finally(
+                history.push('/')
+            )
     }
 
     const editPlant = () => {
@@ -48,7 +51,7 @@ export default function Plant(props){
                 <button onClick={() => editPlant()}>
                 Edit  
                 </button>
-                <button onClick={deletePlant}>Delete</button>
+                <button onClick={() => deletePlant()}>Delete</button>
             </div>
            
         </div>
