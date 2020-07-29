@@ -8,6 +8,6 @@ export const axiosWithAuth = () => {
     headers: {
       Authorization: `Bearer ${token}`
     },
-    baseURL: 'http://localhost:2019'
+    baseURL: 'https://watermyplantsdatabase.herokuapp.com'
   });
 };
