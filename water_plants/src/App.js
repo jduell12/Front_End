@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Link, Route } from 'react-router-dom'
+import { Switch, Link, Route, useHistory } from 'react-router-dom'
 import SignInSide from './material-ui/SignInSide';
 
 import {axiosWithAuth} from './utils/axiosWithAuth'
@@ -18,6 +18,7 @@ function App() {
   const [userInfo, setUserInfo] = useState({});
   const [plantList, setPlants] = useState([]);
   const [plantId, setId] = useState('');
+  const history = useHistory();
 
     useEffect(() => {
         axiosWithAuth()
@@ -31,6 +32,12 @@ function App() {
             })
     }, []); 
 
+
+    const logoutUser = () => {
+      localStorage.clear();
+      history.push('/');
+    }
+
   return (
     <div className="App">
       <div className='nav-links'>
@@ -38,6 +45,7 @@ function App() {
         <Link to='/register'>Register</Link>
         <Link to='/private/user'>User Profile</Link>
         <Link to="/">Plant Dashboard</Link>
+        <button onClick={() => logoutUser()}>Logout</button>
       </div>
 
       {/* Switch for endpoints */}
