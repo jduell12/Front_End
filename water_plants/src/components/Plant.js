@@ -4,13 +4,19 @@ import { Switch, Link, Route } from 'react-router-dom'
 
 
 export default function Plant(props){
+
+    // const delete = () =>{
+
+    // }
     // ,may need to add prop for img from API
     const {plant} = props
 
     return(
         <div className='plant-card'>
             <h3>{plant.name}</h3>
-
+            <button>
+                <Link to="/private/addplant">Add Plant</Link>   
+            </button>
          
             {/* possibly img from API based on species */}
             <div className='plant-details'>
