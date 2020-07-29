@@ -28,7 +28,7 @@ function App() {
             .catch(err => {
                 console.log(err)
             })
-    }, [userInfo, plantList]); 
+    }, []); 
 
   return (
     <div className="App">
