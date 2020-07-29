@@ -122,7 +122,7 @@ const EditPlant = () => {
                         onChange={changeHandler}
                     />
                 </label>
-                <button id="edit" disabled={btnDisabled}>Edit Plant</button>
+                <button id="Submit" disabled={btnDisabled}>Edit Plant</button>
             </form>
         </div>
     )

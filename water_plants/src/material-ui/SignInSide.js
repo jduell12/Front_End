@@ -127,7 +127,7 @@ export default function SignInSide(props) {
       }
     })
     .then(res => {
-      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('token', res.data.access_token);
       props.history.push('/');
     })
     .catch(err => console.log(err))

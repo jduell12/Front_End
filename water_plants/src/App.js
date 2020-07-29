@@ -10,7 +10,7 @@ import {PlantContext} from './context/PlantContext';
 
 //components
 import {
-  PrivateRoute, AddPlant, EditPlant, EditUser, Register, Plantlanding
+  PrivateRoute, AddPlant, EditPlant, EditUser, Register, Plantlanding, Header
 } from './components'
 
 function App() {
@@ -28,14 +28,15 @@ function App() {
             .catch(err => {
                 console.log(err)
             })
-    }, [userInfo, plantList]); 
+    }, []); 
 
   return (
     <div className="App">
-      <div className='nav-links'>
+      <Header />
+      {/* <div className='nav-links'>
         <a href="https://cranky-hypatia-e034a5.netlify.app/">Home</a>
         <Link to='/register'>Register</Link>
-      </div>
+      </div> */}
 
       {/* Switch for endpoints */}
       <Switch>
@@ -50,8 +51,8 @@ function App() {
           <PrivateRoute exact path ="/private/edituser" component={EditUser} />
           <PrivateRoute exact path = "/private/addplant" component={AddPlant} />
           <PlantContext.Provider value={{plantId, setId}}>
-            <PrivateRoute exact path ="/" component={Plantlanding} />
-            <PrivateRoute exact path ="/private/editplant" component={EditPlant} />
+          <PrivateRoute exact path ="/" component={Plantlanding} />
+          <PrivateRoute exact path ="/private/editplant" component={EditPlant} />
           </PlantContext.Provider>
         </UserContext.Provider>
 
