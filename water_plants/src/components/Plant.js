@@ -1,19 +1,27 @@
 //Hernandez
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom'
+import React, {useContext} from 'react';
+import { Link } from 'react-router-dom';
 
-import {UserContext} from '../context/UserContext'
+import {axiosWithAuth} from '../utils/axiosWithAuth'
 
+import {UserContext} from '../context/UserContext';
 
 export default function Plant(props){
-    const {userInfo} = useContext(UserContext);
-
+    const {plantList, setPlants} = useContext(UserContext);
     // ,may need to add prop for img from API
     const {plant} = props
     const {plantid, name, water_frequency, species} = plant;
 
     const deletePlant = () => {
-        
+        axiosWithAuth()
+            .delete(`/plants/${plantid}`)
+            .then(res => {
+                const newList = plantList.filter(plant => plant.plants.plantid !== plantid);
+                setPlants(newList);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     return(

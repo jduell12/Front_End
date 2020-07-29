@@ -26,7 +26,7 @@ function App() {
             .catch(err => {
                 console.log(err)
             })
-    }, []); 
+    }, [userInfo, plantList]); 
 
   return (
     <div className="App">
@@ -42,7 +42,7 @@ function App() {
           {/* <Register inputChange={inputChange}/> */}
           
 
-        <UserContext.Provider value={{userInfo, plantList}}>
+        <UserContext.Provider value={{userInfo, plantList, setPlants}}>
           <Route exact path='/signin'  component={SignInSide}/>
           <PrivateRoute exact path ="/" component={Plantlanding} />
           {/* <PrivateRoute exact path = "/private/user" component={} /> */}
