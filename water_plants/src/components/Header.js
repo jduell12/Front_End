@@ -11,15 +11,14 @@ const history = useHistory()
 const [currentURL, setCurrentURL] = useState(history.location.pathname)
 const [change, setChange] = useState(false)
 
- useEffect(()=>{
-    setChange(!change)
-}, [change])
-
+function refresh(){
+    setCurrentURL(history.location.pathname)
+}
 
     return(
         <header>
             <h1>WaterMyPlants</h1>
-            <div className='nav-links'>
+            <div className='nav-links' onClick={refresh}>
                 <a href="https://cranky-hypatia-e034a5.netlify.app/">Home</a>
                 {
                     currentURL === '/' && 
