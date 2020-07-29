@@ -24,13 +24,13 @@ export default function Plantlanding(props){
                 <Link to="/private/addplant">Add Plant</Link>   
             </button>
 
-            <div className='card-holder'>
+            {/* <div className='card-holder'>
                 {
                     plants.map(plant =>
                         <Plant plant={plant}/>
                     )
                 }
-            </div>
+            </div> */}
             
         </div>
     )
