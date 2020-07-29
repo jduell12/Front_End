@@ -1,5 +1,8 @@
-import React, {history} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import * as yup from 'yup';
+import schema from '../validation/formSchema';
+import {Redirect} from 'react-router-dom';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -14,6 +17,9 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import pink from '@material-ui/core/colors/purple';
+import green from '@material-ui/core/colors/green';
 
 function Copyright() {
   return (
@@ -60,24 +66,64 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignInSide(props) {
-    const {
-        values,
-        submit,
-        inputChange,
-        disabled,
-        errors
-    } = props
-  const classes = useStyles();
+  //making login screen color theme green
+const theme = createMuiTheme({
+  palette: {
+    primary: green,
+    secondary: pink,
+  }
+});
+      //login form stuff
+  const initialFormValues = {
+    username: "",
+    password: ""
+  }
+  const initialFormErrors = {
+    username: "",
+    password: ""
+  }
 
-  const onInputChange = (evt) => {
-    const {name, value} = evt.target
-    inputChange(name, value)
-}
+  const initialUserValue = []
+  const initialDisabled = false
 
-const signIn = event => {
-  event.preventDefault();
+  const [users, setUser] = useState(initialUserValue)
+  const [formErrors, setFormErrors] = useState(initialFormErrors)
+  const [formValues, setFormValues] = useState(initialFormValues)
+  const [disabled, setDisabled] = useState(initialDisabled)
 
-  axios.post('https://watermyplantsdatabase.herokuapp.com/login', `grant_type=password&username=${values.username}&password=${values.password}`, {
+  const inputChange = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(valid => {
+        setFormErrors({
+          ...formErrors,
+          [name]: ""
+        })
+      })
+      .catch(err => {
+        setFormErrors({
+          ...formErrors,
+          [name]: err.errors[0]
+        })
+      })
+    setFormValues({
+      ...formValues,
+      [name]: value
+    })
+  }
+
+
+
+  const submit = event => {
+    event.preventDefault();
+
+    const newUser = {
+      username: formValues.username.trim(),
+      password: formValues.password.trim()
+    }
+
+    axios.post('https://watermyplantsdatabase.herokuapp.com/login', `grant_type=password&username=${newUser.username}&password=${newUser.password}`, {
       headers: {
         // btoa is converting our client id/client secret into base64
         Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
@@ -86,10 +132,24 @@ const signIn = event => {
     })
     .then(res => {
       localStorage.setItem('token', res.data.token);
-      history.push('/plantlanding');
+      props.history.push('/');
     })
     .catch(err => console.log(err))
+  }
+
+  useEffect(() => {
+    schema.isValid(formValues).then(valid => {
+      setDisabled(!valid)
+    }, [formValues])
+  })
+
+  const classes = useStyles();
+
+  const onInputChange = (evt) => {
+    const {name, value} = evt.target
+    inputChange(name, value)
 }
+
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -103,7 +163,7 @@ const signIn = event => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form onSubmit={signIn} className={classes.form} noValidate>
+          <form onSubmit={submit} className={classes.form} noValidate>
             <TextField
               variant="outlined"
               margin="normal"
@@ -112,7 +172,7 @@ const signIn = event => {
               id="username"
               label="Username"
               name="username"
-              value={values.username}
+              value={formValues.username}
               autoComplete="username"
               autoFocus
               onChange={onInputChange}
@@ -123,7 +183,7 @@ const signIn = event => {
               required
               fullWidth
               name="password"
-              value={values.password}
+              value={formValues.password}
               label="Password"
               type="password"
               id="password"
@@ -131,8 +191,8 @@ const signIn = event => {
               onChange = {onInputChange}
             />
             <div>
-                    <div>{errors.username}</div>
-                    <div>{errors.password}</div>
+                    <div>{formErrors.username}</div>
+                    <div>{formErrors.password}</div>
                 </div>
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
