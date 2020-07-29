@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
 import schema from '../validation/formSchema';
-import {Redirect} from 'react-router-dom';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -17,9 +16,9 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
-import pink from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
+// import { createMuiTheme } from '@material-ui/core/styles';
+// import pink from '@material-ui/core/colors/purple';
+// import green from '@material-ui/core/colors/green';
 
 function Copyright() {
   return (
@@ -67,12 +66,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide(props) {
   //making login screen color theme green
-const theme = createMuiTheme({
-  palette: {
-    primary: green,
-    secondary: pink,
-  }
-});
+// const theme = createMuiTheme({
+//   palette: {
+//     primary: green,
+//     secondary: pink,
+//   }
+// });
       //login form stuff
   const initialFormValues = {
     username: "",
@@ -83,10 +82,7 @@ const theme = createMuiTheme({
     password: ""
   }
 
-  const initialUserValue = []
   const initialDisabled = false
-
-  const [users, setUser] = useState(initialUserValue)
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [formValues, setFormValues] = useState(initialFormValues)
   const [disabled, setDisabled] = useState(initialDisabled)
