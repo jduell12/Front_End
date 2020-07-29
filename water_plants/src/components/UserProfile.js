@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 
 const initialUserValue = {
@@ -14,14 +14,17 @@ const initialUserValue = {
 export default function UserProfile() {
     const [user, setUser] = useState(initialUserValue)
 
-    axiosWithAuth()
+    useEffect(() => {
+        axiosWithAuth()
         .get('https://watermyplantsdatabase.herokuapp.com/myinfo')
         .then((resp) => {
-            console.log(resp)
+            console.log(resp.config.data)
         })
         .catch((err) => {
             console.log(err)
         })
+    }, [])
+    
 
     return (
         <div>

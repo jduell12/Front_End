@@ -1,35 +1,54 @@
 //Hernandez
-import React, { useEffect, useState } from 'react';
-import { Switch, Link, Route } from 'react-router-dom'
+import React, {useContext} from 'react';
+import { useHistory } from 'react-router-dom';
 
+import {axiosWithAuth} from '../utils/axiosWithAuth'
+
+import {UserContext} from '../context/UserContext';
+import {PlantContext} from '../context/PlantContext';
 
 export default function Plant(props){
-
-    // const delete = () =>{
-
-    // }
+    const {plantList, setPlants} = useContext(UserContext);
+    const {plantId, setId} = useContext(PlantContext);
     // ,may need to add prop for img from API
     const {plant} = props
+    const {plantid, name, water_frequency, species} = plant;
+    const history = useHistory();
+
+    const deletePlant = () => {
+        axiosWithAuth()
+            .delete(`/plants/${plantid}`)
+            .then(res => {
+                const newList = plantList.filter(plant => plant.plants.plantid !== plantid);
+                setPlants(newList);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    const editPlant = () => {
+        setId(plantid);
+        history.push(`/private/editplant`);
+    }
 
     return(
         <div className='plant-card'>
-            <h3>{plant.name}</h3>
-            <button>
-                <Link to="/private/addplant">Add Plant</Link>   
-            </button>
+            <h3>{name}</h3>
+
          
             {/* possibly img from API based on species */}
             <div className='plant-details'>
-                <p>{plant.id}</p>
-                <p>{plant.frequency}</p>
-                <p>{plant.species}</p>
-                <p>{plant.lwd}</p>
+                {/* <p>{plant.id}</p> */}
+                <p>{water_frequency}</p>
+                <p>{species}</p>
+                {/* <p>{plant.lwd}</p> */}
             </div>
             <div className='buttons'>
-                <button>
-                <Link to="/private/editplant">Edit</Link>   
+                <button onClick={() => editPlant()}>
+                Edit  
                 </button>
-                {/* <button onclick={delete}>Delete</button> */}
+                <button onClick={deletePlant}>Delete</button>
             </div>
            
         </div>
