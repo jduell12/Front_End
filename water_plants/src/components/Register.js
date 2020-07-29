@@ -1,8 +1,7 @@
 //Hernandez
 import React, {useState, useEffect,} from "react";
 import axios from 'axios';
-import * as yup from 'yup'
-import { Redirect } from "react-router-dom";
+import * as yup from 'yup';
 
 
 const initialFormValues = {
@@ -70,9 +69,7 @@ export default function Register(props){
           })
           .finally(
             setFormValues(initialFormValues),
-            // <Redirect to='/private/plantlanding'/>
-            history.push('/private/plantlanding')
-            // <Redirect to='/' />
+            history.push('/')
           )
       }
 

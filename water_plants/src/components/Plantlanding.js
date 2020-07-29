@@ -1,37 +1,38 @@
 //Hernandez
-import React, {useState, useEffect} from "react";
+import React, {useState, useContext, useEffect} from "react";
+import {Link} from 'react-router-dom';
 import Plant from './Plant'
-import {axiosWithAuth} from '../utils/axiosWithAuth'
-import { Switch, Link, Route } from 'react-router-dom'
 
-export default function Plantlanding(props){
-    const [plants, setPlants] = useState([])
+//context for user
+import {UserContext} from '../context/UserContext';
+import {PlantContext} from '../context/PlantContext';
 
-    axiosWithAuth()
-    .get('https://watermyplantsdatabase.herokuapp.com/myinfo') 
-        .then(res => {
-            setPlants(res.data)
-        })
-        .catch(err => {
-            debugger
-            console.log(err)
-        }, [])
+export default function Plantlanding(){
+
+    const {userInfo} = useContext(UserContext);
+    const {plants} = userInfo;
+
+    const{setId} = useContext(PlantContext);
 
     return(
         <div className='plant-page'>
             <h2> Your Plants!</h2>
-            <button>
-                <Link to="/private/addplant">Add Plant</Link>   
-            </button>
-
-            {/* <div className='card-holder'>
+             <Link to="/private/addplant"><button>Add Plant </button></Link>
+            {!plants ? <span></span> : 
+                (
+            <div>
                 {
-                    plants.map(plant =>
-                        <Plant plant={plant}/>
+                    !plants.length ? (<span></span>) : (
+                        <div className='card-holder'>
+                            {
+                             plants.map(plant => <Plant key={plant.plants.plantid} plant={plant.plants} setId={setId}/>)
+                            }
+                        </div>
                     )
                 }
-            </div> */}
-            
+            </div>
+                )
+            }
         </div>
     )
 }
