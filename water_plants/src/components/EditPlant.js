@@ -3,7 +3,8 @@ import * as Yup from 'yup';
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 //context
-import {PlantContext} from '../context/PlantContext'
+import {UserContext} from '../context/UserContext';
+import {PlantContext} from '../context/PlantContext';
 
 //form schema
 import plantSchema from '../validation/addPlantFormSchema';
@@ -13,7 +14,9 @@ import {Errors} from '../styles/AddPlantStyles'
 
 
 const EditPlant = () => {
-    //context to grab plant information to populate form 
+    const{plantList, setPlants} = useContext(UserContext);
+    const{plantId} = useContext(PlantContext);
+
     const initialFormErrors = {
         name: '',
         species: '',
@@ -21,9 +24,10 @@ const EditPlant = () => {
     }
 
     const editForm = {
-        name: '', //will get from context,
-        species: '', 
-        water_frequency: '',
+        plantid: plantId, 
+        name: plantList[0].plants.name, 
+        species: plantList[0].plants.species, 
+        water_frequency: plantList[0].plants.water_frequency,
         image: ''
     }
 
@@ -36,6 +40,10 @@ const EditPlant = () => {
             setDisabled(!valid);
         })
     })
+
+    useEffect(() => {
+        plantList.map(plant => console.log(plant.plants));
+    }, [])
 
     const changeHandler = event => {
         const name = event.target.name;
@@ -68,9 +76,9 @@ const EditPlant = () => {
         event.preventDefault();
 
         axiosWithAuth()
-            .put('', formValues)
+            .put('/user/plants', formValues)
             .then(res => {
-                //get updated plant information
+                console.log(res);
             })
             .catch(err => console.log(err))
     }
@@ -85,7 +93,7 @@ const EditPlant = () => {
             </Errors>
             <form onSubmit={submitForm}>
                 <label htmlFor="editname">
-                    name: &nbsp;
+                    Name: &nbsp;
                     <input 
                         id="editname"
                         name = 'name'

@@ -1,16 +1,19 @@
 //Hernandez
 import React, {useContext} from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 import {UserContext} from '../context/UserContext';
+import {PlantContext} from '../context/PlantContext';
 
 export default function Plant(props){
     const {plantList, setPlants} = useContext(UserContext);
+    const {plantId, setId} = useContext(PlantContext);
     // ,may need to add prop for img from API
     const {plant} = props
     const {plantid, name, water_frequency, species} = plant;
+    const history = useHistory();
 
     const deletePlant = () => {
         axiosWithAuth()
@@ -22,6 +25,11 @@ export default function Plant(props){
             .catch(err => {
                 console.log(err);
             })
+    }
+
+    const editPlant = () => {
+        setId(plantid);
+        history.push(`/private/editplant`);
     }
 
     return(
@@ -36,8 +44,8 @@ export default function Plant(props){
                 {/* <p>{plant.lwd}</p> */}
             </div>
             <div className='buttons'>
-                <button>
-                <Link to="/private/editplant">Edit</Link>   
+                <button onClick={() => editPlant()}>
+                Edit  
                 </button>
                 <button onClick={deletePlant}>Delete</button>
             </div>

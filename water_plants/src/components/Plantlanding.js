@@ -2,15 +2,17 @@
 import React, {useState, useContext, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import Plant from './Plant'
-import {AddPlant} from './'
 
 //context for user
-import {UserContext} from '../context/UserContext'
+import {UserContext} from '../context/UserContext';
+import {PlantContext} from '../context/PlantContext';
 
 export default function Plantlanding(){
 
     const {userInfo} = useContext(UserContext);
     const {plants} = userInfo;
+
+    const{setId} = useContext(PlantContext);
 
     return(
         <div className='plant-page'>
@@ -23,7 +25,7 @@ export default function Plantlanding(){
                     !plants.length ? (<span></span>) : (
                         <div className='card-holder'>
                             {
-                             plants.map(plant => <Plant key={plant.plants.plantid} plant={plant.plants}/>)
+                             plants.map(plant => <Plant key={plant.plants.plantid} plant={plant.plants} setId={setId}/>)
                             }
                         </div>
                     )

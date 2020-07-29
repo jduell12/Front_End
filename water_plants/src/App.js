@@ -5,7 +5,8 @@ import SignInSide from './material-ui/SignInSide';
 import {axiosWithAuth} from './utils/axiosWithAuth'
 
 //context
-import {UserContext} from './context/UserContext'
+import {UserContext} from './context/UserContext';
+import {PlantContext} from './context/PlantContext';
 
 //components
 import {
@@ -15,6 +16,7 @@ import {
 function App() {
   const [userInfo, setUserInfo] = useState({});
   const [plantList, setPlants] = useState([]);
+  const [plantId, setId] = useState('');
 
     useEffect(() => {
         axiosWithAuth()
@@ -44,11 +46,13 @@ function App() {
 
         <UserContext.Provider value={{userInfo, plantList, setPlants}}>
           <Route exact path='/signin'  component={SignInSide}/>
-          <PrivateRoute exact path ="/" component={Plantlanding} />
           {/* <PrivateRoute exact path = "/private/user" component={} /> */}
           <PrivateRoute exact path ="/private/edituser" component={EditUser} />
-          <PrivateRoute exact path ="/private/editplant" component={EditPlant} />
           <PrivateRoute exact path = "/private/addplant" component={AddPlant} />
+          <PlantContext.Provider value={{plantId, setId}}>
+            <PrivateRoute exact path ="/" component={Plantlanding} />
+            <PrivateRoute exact path ="/private/editplant" component={EditPlant} />
+          </PlantContext.Provider>
         </UserContext.Provider>
 
       </Switch>
