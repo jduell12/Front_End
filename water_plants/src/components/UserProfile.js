@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react'
+import {Link, useHistory} from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth'
+
+import {UserContext} from '../context/UserContext'
 
 const initialUserValue = {
     username: '',
@@ -14,6 +16,8 @@ const initialUserValue = {
 
 export default function UserProfile() {
     const [user, setUser] = useState(initialUserValue)
+    const {userInfo} = useContext(UserContext);
+    const history = useHistory();
 
     useEffect(() => {
         axiosWithAuth()
@@ -28,7 +32,14 @@ export default function UserProfile() {
     }, [])
 
     const deleteUser = () => {
-        
+        axiosWithAuth()
+            .delete(`/user/${userInfo.userid}`)
+            .then(res => {
+                console.log(res);
+                localStorage.clear();
+                history.push('/');
+            })
+            .catch(err => console.log(err))
     }
     
 
