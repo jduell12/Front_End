@@ -18,6 +18,7 @@ import {
 
 const EditPlant = () => {
     const{plantList} = useContext(UserContext);
+    const {plantId} = useContext(PlantContext);
     const history = useHistory();
 
     const initialFormErrors = {
@@ -44,15 +45,22 @@ const EditPlant = () => {
     })
 
     useEffect(() => {
-        plantList.map(plant => console.log(plant.plants));
-        setValues({
-            plantid: plantList[0].plants.plantid,
-            name: plantList[0].plants.name,
-            species: plantList[0].plants.species, 
-            water_frequency: plantList[0].plants.water_frequency,
-            image: ''
-        })
+        // plantList.map(plant => console.log(plant.plants));
+        getPlant();
     }, [])
+
+    const getPlant = () => {
+        if(plantList.length >= 1){
+            const plant = plantList.filter(plant => plant.plants.plantid === plantId);
+            setValues({
+                plantid: plant[0].plants.plantid,
+                name: plant[0].plants.name,
+                species: plant[0].plants.species, 
+                water_frequency: plant[0].plants.water_frequency,
+                image: ''
+            })
+        } 
+    }
 
     const changeHandler = event => {
         const name = event.target.name;
@@ -87,7 +95,7 @@ const EditPlant = () => {
         axiosWithAuth()
             .put('/user/plants', formValues)
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 history.push('/');
             })
             .catch(err => console.log(err))
@@ -95,13 +103,13 @@ const EditPlant = () => {
 
     return(
         <div>
+            <StyledTitle>Edit {formValues.name} </StyledTitle>
+            <Errors>
+                <p>{formErrors.name}</p>
+                <p>{formErrors.species}</p>
+                <p>{formErrors.water_frequency}</p>
+            </Errors>
             <StyledForm onSubmit={submitForm}>
-                <StyledTitle>Edit {formValues.name} </StyledTitle>
-                <Errors>
-                    <p>{formErrors.name}</p>
-                    <p>{formErrors.species}</p>
-                    <p>{formErrors.water_frequency}</p>
-                </Errors>
                 <StyledLabel htmlFor="editname">
                     Name: &nbsp;
                     <StyledInput 
