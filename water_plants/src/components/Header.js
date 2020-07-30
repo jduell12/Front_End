@@ -28,18 +28,25 @@ useEffect(() => {
             <StyledDiv className='nav-links' onClick={refresh}>
                 <Link to="/">Home</Link>
                 {
-                    currentURL === '/' && 
-                    <Link to='/private/user'>User Profile</Link> &&
-                    <StyledBtn onClick={() => logout()}>Logout</StyledBtn>
+                    currentURL === '/' ? (
+                        <>
+                            <Link to='/private/user'>User Profile</Link>
+                            <StyledBtn onClick={() => logout()}>Logout</StyledBtn>
+                        </>
+                    ) : <></>
+                    
                 }  
                 {
-                    currentURL === '/signin' && 
+                     currentURL === '/signin'&& 
                     <Link to='/register'>Register</Link> 
                 }
                 {
-                    currentURL === '/private/user' &&
-                    <Link  to='/'>Plant Dashboard</Link> &&
-                    <StyledBtn onClick={() => logout()}>Logout</StyledBtn>
+                    currentURL === '/private/user' ? (
+                        <>
+                            <Link  to='/'>Plant Dashboard</Link> 
+                            <StyledBtn onClick={() => logout()}>Logout</StyledBtn>
+                        </>
+                    ) : <></>
                 }
                 {
                     currentURL === '/register' &&
