@@ -1,13 +1,48 @@
 //Hernandez
 import React, {useState, useContext, useEffect} from "react";
-import {Link} from 'react-router-dom';
 import Plant from './Plant'
-
-//context for user
+import {axiosWithAuth} from '../utils/axiosWithAuth'
+import { Switch, Link, Route } from 'react-router-dom'
 import {UserContext} from '../context/UserContext';
 import {PlantContext} from '../context/PlantContext';
 
-import {axiosWithAuth} from '../utils/axiosWithAuth'
+// export default function Plantlanding(props){
+//     const [plants, setPlants] = useState([])
+
+    // axiosWithAuth()
+    // .get('https://watermyplantsdatabase.herokuapp.com/myinfo') 
+    //     .then(res => {
+    //         setPlants(res.data)
+    //     })
+    //     .catch(err => {
+    //         debugger
+    //         console.log(err)
+    //     }, [])
+
+    // return(
+    //     <div className='plant-page'>
+    //         <h2> Your Plants!</h2>
+    //         <button>
+    //             <Link to="/private/addplant">Add Plant</Link>   
+    //         </button>
+    //         <button>
+    //             <Link to="/private/user">Profile</Link>   
+    //         </button>
+
+    //         <div className='card-holder'>
+    //             {
+    //                 plants.map(plant =>
+    //                     <Plant plant={plant}/>
+    //                 )
+    //             }
+    //         </div>
+            
+    //     </div>
+    // )
+
+    //context for user
+
+// import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 export default function Plantlanding(){
 

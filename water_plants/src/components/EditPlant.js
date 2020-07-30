@@ -11,12 +11,13 @@ import {PlantContext} from '../context/PlantContext';
 import plantSchema from '../validation/addPlantFormSchema';
 
 //styles
-import {Errors} from '../styles/AddPlantStyles'
+import {
+    Errors, StyledBtn, StyledForm, StyledInput, StyledLabel, StyledTitle
+} from '../styles/AddPlantStyles';
 
 
 const EditPlant = () => {
-    const{plantList, setPlants} = useContext(UserContext);
-    const{plantId} = useContext(PlantContext);
+    const{plantList} = useContext(UserContext);
     const history = useHistory();
 
     const initialFormErrors = {
@@ -24,12 +25,11 @@ const EditPlant = () => {
         species: '',
         water_frequency: ''
     }
-
     const editForm = {
-        plantid: plantList[0].plants.plantid, 
-        name: plantList[0].plants.name, 
-        species: plantList[0].plants.species, 
-        water_frequency: plantList[0].plants.water_frequency,
+        plantid: '',
+        name: '',
+        species: '', 
+        water_frequency: '',
         image: ''
     }
 
@@ -45,6 +45,13 @@ const EditPlant = () => {
 
     useEffect(() => {
         plantList.map(plant => console.log(plant.plants));
+        setValues({
+            plantid: plantList[0].plants.plantid,
+            name: plantList[0].plants.name,
+            species: plantList[0].plants.species, 
+            water_frequency: plantList[0].plants.water_frequency,
+            image: ''
+        })
     }, [])
 
     const changeHandler = event => {
@@ -88,45 +95,45 @@ const EditPlant = () => {
 
     return(
         <div>
-            <h1>Edit Your Plant </h1>
+            <StyledTitle>Edit {formValues.name} </StyledTitle>
             <Errors>
                 <p>{formErrors.name}</p>
                 <p>{formErrors.species}</p>
                 <p>{formErrors.water_frequency}</p>
             </Errors>
-            <form onSubmit={submitForm}>
-                <label htmlFor="editname">
+            <StyledForm onSubmit={submitForm}>
+                <StyledLabel htmlFor="editname">
                     Name: &nbsp;
-                    <input 
+                    <StyledInput 
                         id="editname"
                         name = 'name'
                         type="text"
                         value={formValues.name}
                         onChange={changeHandler}
                     />
-                </label>
-                <label htmlFor="editSpecies">
+                </StyledLabel>
+                <StyledLabel htmlFor="editSpecies">
                     Species: &nbsp;
-                    <input 
+                    <StyledInput 
                         id="editSpecies"
                         name = "species"
                         type = 'text'
                         value ={formValues.species}
                         onChange={changeHandler}
                     />
-                </label>
-                <label htmlFor="editWater_frequency">
+                </StyledLabel>
+                <StyledLabel htmlFor="editWater_frequency">
                     Plant Water Frequency: &nbsp;
-                    <input 
+                    <StyledInput 
                         id="editWater_frequency"
                         name="water_frequency"
                         type="text"
                         value={formValues.water_frequency}
                         onChange={changeHandler}
                     />
-                </label>
-                <button id="edit" disabled={btnDisabled}>Edit Plant</button>
-            </form>
+                </StyledLabel>
+                <StyledBtn id="Submit" disabled={btnDisabled}>Edit Plant</StyledBtn>
+            </StyledForm>
         </div>
     )
 }
