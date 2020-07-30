@@ -47,13 +47,23 @@ table {
 	border-spacing: 0;
 }
 
+/*General Styles*/
+
+html{
+	background: url('https://images.pexels.com/photos/1029596/pexels-photo-1029596.jpeg?cs=srgb&dl=close-up-photography-of-dewdrops-on-leaf-1029596.jpg&fm=jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
 html, body{
 	font-size: 62.5%;
 }
 
 body{
 	text-align: center;
-	background: #0091C7;
+	color: white;
 }
 
 
