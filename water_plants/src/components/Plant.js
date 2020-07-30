@@ -19,11 +19,22 @@ export default function Plant(props){
         axiosWithAuth()
             .delete(`/plants/${plantid}`)
             .then(res => {
-                const newList = plantList.filter(plant => plant.plants.plantid !== plantid);
-                setPlants(newList);
+                getData();
+                history.push('/');
             })
             .catch(err => {
                 console.log(err);
+            })
+    }
+
+    const getData = () => {
+        axiosWithAuth()
+            .get('https://watermyplantsdatabase.herokuapp.com/myinfo') 
+            .then(res => {
+                setPlants(res.data.plants);
+            })
+            .catch(err => {
+                console.log(err)
             })
     }
 
@@ -48,7 +59,7 @@ export default function Plant(props){
                 <button onClick={() => editPlant()}>
                 Edit  
                 </button>
-                <button onClick={deletePlant}>Delete</button>
+                <button onClick={() => deletePlant()}>Delete</button>
             </div>
            
         </div>
