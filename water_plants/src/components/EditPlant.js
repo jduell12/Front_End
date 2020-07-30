@@ -95,13 +95,13 @@ const EditPlant = () => {
 
     return(
         <div>
-            <StyledTitle>Edit {formValues.name} </StyledTitle>
-            <Errors>
-                <p>{formErrors.name}</p>
-                <p>{formErrors.species}</p>
-                <p>{formErrors.water_frequency}</p>
-            </Errors>
             <StyledForm onSubmit={submitForm}>
+                <StyledTitle>Edit {formValues.name} </StyledTitle>
+                <Errors>
+                    <p>{formErrors.name}</p>
+                    <p>{formErrors.species}</p>
+                    <p>{formErrors.water_frequency}</p>
+                </Errors>
                 <StyledLabel htmlFor="editname">
                     Name: &nbsp;
                     <StyledInput 
