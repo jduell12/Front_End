@@ -1,34 +1,35 @@
-// import styled from 'styled-components'
-import { makeStyles } from '@material-ui/core/styles'
+import styled from 'styled-components';
 
-const useStyles = makeStyles((theme) => ({
-    cardDiv: {
-        width: '30%',
-        backgroundColor: '#3B945E',
-        padding: theme.spacing(3, 6),
-        margin: '10% auto',
-        boxShadow:'10px 10px 5px 0px rgba(0,0,0,0.75)',
-        color: 'white',
+export const Card = styled.div`
+    margin: 10% 25%;
+    padding: 3%;
+    background: #3B945E;
+    border-radius: 2%;
+    display: flex;
+    flex-direction: column;
+
+`
+
+export const StyledDetails = styled.div`
+    margin: 2% 0;
+    font-size: 2rem;
+`
+
+export const StyledTitle = styled.h1`
+    margin: 1%;
+`
+
+export const StyledBtn = styled.button`
+    background: #6E9B7B;
+    color: white;
+    font-size: 1.75rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin: 2%;
+
+    &:hover{
+        cursor: pointer;
+        background: white;
+        color: #6E9B7B;
     }
-}))
-
-export default useStyles
-
-// export const ContainerDiv = styled.div`
-//     padding: 10%;
-    
-// `
-// export const CardDiv = styled.div`
-//     width: 30%;
-//     background-color: teal;
-//     padding: 5% 10%;
-//     margin: auto;
-//     border-radius: 15%;
-//     box-shadow:10px 10px 5px 0px rgba(0,0,0,0.75);
-//     color: white;
-
-//     h1 {
-//         text-align: center;
-//     }
-
-// `
+`

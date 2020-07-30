@@ -1,9 +1,6 @@
 import * as Yup from 'yup';
 
 const userSchema = Yup.object().shape({
-    username: Yup
-        .string()
-        .required("Must include a name."),
     firstname: Yup
         .string()
         .required("Must include a first name."),

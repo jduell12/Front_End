@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth'
-import { ContainerDiv, CardDiv } from '../styles/userprofile-styles'
-import useStyles from '../styles/userprofile-styles'
-import Card from '@material-ui/core/Card'
+import {
+    Card, StyledDetails, StyledTitle, StyledBtn
+} from '../styles/userprofile-styles'
+
 
 import { UserContext } from '../context/UserContext'
 
@@ -23,7 +24,6 @@ export default function UserProfile() {
     const { userInfo } = useContext(UserContext);
     const history = useHistory();
     
-    const classes = useStyles()
     useEffect(() => {
         axiosWithAuth()
             .get('/myinfo')
@@ -50,17 +50,17 @@ export default function UserProfile() {
 
     return (
 
-        <Card className={classes.cardDiv}>
-            <h1>Profile</h1>
+        <Card >
+            <StyledTitle>Profile</StyledTitle>
             <h2>{user.username}</h2>
-            <p>First Name: {user.firstname}</p>
-            <p>Last Name: {user.lastname}</p>
-            <p>email: {user.primaryemail}</p>
-            <p>phone: {user.phone}</p>
+            <StyledDetails>First Name: {user.firstname}</StyledDetails>
+            <StyledDetails>Last Name: {user.lastname}</StyledDetails>
+            <StyledDetails>email: {user.primaryemail}</StyledDetails>
+            <StyledDetails>phone: {user.phone}</StyledDetails>
 
             <div>
-                <Link to="/private/edituser"><button>Edit User Profile</button></Link>
-                <button onClick={() => deleteUser()}>Delete User Profile</button>
+                <Link to="/private/edituser"><StyledBtn>Edit User Profile</StyledBtn></Link>
+                <StyledBtn onClick={() => deleteUser()}>Delete User Profile</StyledBtn>
             </div>
         </Card>
     )
