@@ -52,3 +52,7 @@ export const StyledLabel = styled.label`
     flex-direction: column;
     color: white;
 `;
+
+export const StyledTitle = styled.h1`
+    margin-top: 3%;
+`;

@@ -22,7 +22,7 @@ useEffect(() => {
         <header>
             <h1>WaterMyPlants</h1>
             <div className='nav-links' onClick={refresh}>
-                <a href="https://cranky-hypatia-e034a5.netlify.app/">Home</a>
+                <Link to="/">Home</Link>
                 {
                     currentURL === '/' && 
                     <Link to='/private/user'>User Profile</Link>
