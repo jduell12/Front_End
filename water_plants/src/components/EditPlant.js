@@ -47,7 +47,7 @@ const EditPlant = () => {
     useEffect(() => {
         // plantList.map(plant => console.log(plant.plants));
         getPlant();
-    }, [])
+    }, [plantId])
 
     const getPlant = () => {
         if(plantList.length >= 1){
