@@ -1,10 +1,11 @@
 
 import React, {useState, useEffect, useContext} from 'react';
+import {useHistory} from 'react-router-dom';
 import * as Yup from 'yup';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
 
 //context
-// import {UserContext} from '../context/UserContext';
+import {UserContext} from '../context/UserContext';
 
 //form schema
 import userSchema from '../validation/userSchema';
@@ -13,16 +14,27 @@ import userSchema from '../validation/userSchema';
 import {Errors} from '../styles/AddPlantStyles'
 
 const EditUser = () => {
+    const {userInfo, setUserInfo} = useContext(UserContext);
+    const history = useHistory();
+
+    const initialFormErrors = {
+            username: '',
+            firstname: '',
+            lastname: '',
+            primaryemail: '',
+            phone: ''
+    }
+
     const iniitalFormValues = {
-        username: '',
-        firstname: '',
-        lastname: '',
-        primaryemail: '',
-        phone: ''
+        username: userInfo.username,
+        firstname: userInfo.firstname,
+        lastname: userInfo.lastname,
+        primaryemail: userInfo.primaryemail,
+        phone: userInfo.phone
     }
 
     const [formValues, setValues] = useState(iniitalFormValues);
-    const [formErrors, setErrors] = useState(iniitalFormValues);
+    const [formErrors, setErrors] = useState(initialFormErrors);
     const [disabled, setDisabled] = useState(true);
 
     useEffect(() => {
@@ -56,15 +68,21 @@ const EditUser = () => {
             [name]: value
         })
 
+        setUserInfo({
+            ...userInfo,
+            [name]: value
+        })
+
     }
 
     const submitForm = event => {
         event.preventDefault();
 
         axiosWithAuth()
-            .put('', formValues)
+            .put(`user/${userInfo.userid}`, userInfo)
             .then(res => {
-
+                console.log(res);
+                history.push('/private/user');
             })
             .catch(err => console.log(err))
     }

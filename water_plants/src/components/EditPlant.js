@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
+import {useHistory} from 'react-router-dom';
 import * as Yup from 'yup';
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 
@@ -16,6 +17,7 @@ import {Errors} from '../styles/AddPlantStyles'
 const EditPlant = () => {
     const{plantList, setPlants} = useContext(UserContext);
     const{plantId} = useContext(PlantContext);
+    const history = useHistory();
 
     const initialFormErrors = {
         name: '',
@@ -24,7 +26,7 @@ const EditPlant = () => {
     }
 
     const editForm = {
-        plantid: plantId, 
+        plantid: plantList[0].plants.plantid, 
         name: plantList[0].plants.name, 
         species: plantList[0].plants.species, 
         water_frequency: plantList[0].plants.water_frequency,
@@ -79,6 +81,7 @@ const EditPlant = () => {
             .put('/user/plants', formValues)
             .then(res => {
                 console.log(res);
+                history.push('/');
             })
             .catch(err => console.log(err))
     }

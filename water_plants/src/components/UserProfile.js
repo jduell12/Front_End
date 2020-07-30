@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import {Link, useHistory} from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 import { ContainerDiv, CardDiv } from '../styles/userprofile-styles'
 import styled from 'styled-components'
 
+
+import {UserContext} from '../context/UserContext'
 
 const initialUserValue = {
     username: '',
@@ -16,6 +19,8 @@ const initialUserValue = {
 
 export default function UserProfile() {
     const [user, setUser] = useState(initialUserValue)
+    const {userInfo} = useContext(UserContext);
+    const history = useHistory();
 
     useEffect(() => {
         axiosWithAuth()
@@ -29,6 +34,17 @@ export default function UserProfile() {
             })
     }, [])
 
+    const deleteUser = () => {
+        axiosWithAuth()
+            .delete(`/user/${userInfo.userid}`)
+            .then(res => {
+                console.log(res);
+                localStorage.clear();
+                history.push('/');
+            })
+            .catch(err => console.log(err))
+    }
+    
 
     return (
         <ContainerDiv>
@@ -39,11 +55,11 @@ export default function UserProfile() {
                 <p>Last Name: {user.lastname}</p>
                 <p>email: {user.primaryemail}</p>
                 <p>phone: {user.phone}</p>
-                <div>
-                    <button>Edit User Profile</button>
-                    <button>Delete User Profile</button>
-                </div>
             </CardDiv>
+            <div>
+                <Link to="/private/edituser"><button>Edit User Profile</button></Link>
+                <button onClick={() => deleteUser()}>Delete User Profile</button>
+            </div>
         </ContainerDiv>
     )
 }
