@@ -24,12 +24,11 @@ const EditPlant = () => {
         species: '',
         water_frequency: ''
     }
-
     const editForm = {
-        plantid: plantList[0].plants.plantid, 
-        name: plantList[0].plants.name, 
-        species: plantList[0].plants.species, 
-        water_frequency: plantList[0].plants.water_frequency,
+        plantid: '',
+        name: '',
+        species: '', 
+        water_frequency: '',
         image: ''
     }
 
@@ -45,6 +44,13 @@ const EditPlant = () => {
 
     useEffect(() => {
         plantList.map(plant => console.log(plant.plants));
+        setValues({
+            plantid: plantList[0].plants.plantid,
+            name: plantList[0].plants.name,
+            species: plantList[0].plants.species, 
+            water_frequency: plantList[0].plants.water_frequency,
+            image: ''
+        })
     }, [])
 
     const changeHandler = event => {
