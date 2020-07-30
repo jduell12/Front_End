@@ -12,7 +12,7 @@ export const Errors = styled.div`
 `;
 
 export const OuterDiv = styled.div`
-    color: white;
+    padding-top: 3%;
 `;
 
 export const StyledForm = styled.form`
@@ -61,3 +61,11 @@ export const StyledLabel = styled.label`
 export const StyledTitle = styled.h1`
     margin-top: 1.5%;
 `;
+
+export const StyledTitle2 = styled.h2`
+    margin-bottom: 2%;
+`
+
+export const StyledLink = styled.a`
+    margin-bottom: 1.5%;
+`
