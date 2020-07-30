@@ -7,6 +7,10 @@ import {axiosWithAuth} from '../utils/axiosWithAuth'
 import {UserContext} from '../context/UserContext';
 import {PlantContext} from '../context/PlantContext';
 
+import {
+    StyledCard, StyledDetails, StyledBtn
+} from '../styles/PlantCardStyles'
+
 export default function Plant(props){
     const {plantList, setPlants} = useContext(UserContext);
     const {plantId, setId} = useContext(PlantContext);
@@ -44,25 +48,23 @@ export default function Plant(props){
     }
 
     return(
-        <div className='plant-card'>
-            <h3>{name}</h3>
+        <StyledCard className='plant-card'>
+            <h3> {name}</h3>
 
          
             {/* possibly img from API based on species */}
             <div className='plant-details'>
-                {/* <p>{plant.id}</p> */}
-                <p>{water_frequency}</p>
-                <p>{species}</p>
-                {/* <p>{plant.lwd}</p> */}
+                <StyledDetails> {species}</StyledDetails>
+                <StyledDetails> {water_frequency}</StyledDetails>
             </div>
             <div className='buttons'>
-                <button onClick={() => editPlant()}>
+                <StyledBtn onClick={() => editPlant()}>
                 Edit  
-                </button>
-                <button onClick={() => deletePlant()}>Delete</button>
+                </StyledBtn>
+                <StyledBtn onClick={() => deletePlant()}>Delete</StyledBtn>
             </div>
            
-        </div>
+        </StyledCard>
     )
         
 }

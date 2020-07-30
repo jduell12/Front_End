@@ -10,6 +10,8 @@ import {
     OuterDiv, StyledTitle2
 } from '../styles/AddPlantStyles'
 
+import {StyledBtn} from '../styles/PlantCardStyles';
+
 export default function Plantlanding(){
 
     const {userInfo, setUserInfo, plantList} = useContext(UserContext);
@@ -31,7 +33,7 @@ export default function Plantlanding(){
     return(
         <OuterDiv className='plant-page'>
             <StyledTitle2> Your Plants!</StyledTitle2>
-             <Link to="/private/addplant"><button>Add Plant </button></Link>
+             <Link to="/private/addplant"><StyledBtn>Add Plant </StyledBtn></Link>
             {!plants ? <span></span> : 
                 (
             <div>
