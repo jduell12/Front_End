@@ -33,17 +33,16 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header/>
 
       {/* Switch for endpoints */}
       <Switch>
-
         <Route exact path='/register' component={Register}/>
           {/* <Register inputChange={inputChange}/> */}
         {/* <Route exact path='/userprofile' component={UserProfile}/> */}
 
         <UserContext.Provider value={{userInfo, plantList, setPlants}}>
-          <Route exact path='/signin'  component={SignInSide}/>
+          <Route exact path='/signin'  component={SignInSide} />
           <PrivateRoute exact path = "/private/user" component={UserProfile} />
           <PrivateRoute exact path ="/private/edituser" component={EditUser} />
           <PrivateRoute exact path = "/private/addplant" component={AddPlant} />
