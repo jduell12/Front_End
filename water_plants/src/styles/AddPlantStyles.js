@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 
 export const Errors = styled.div`
-    color: red;
-    font-size: 1rem;
-    margin: 3%;
+    color: white;
+    background: #cc3300;
+    font-size: 1.75rem;
+    margin: 3% 25%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
 `;
 
 export const OuterDiv = styled.div`

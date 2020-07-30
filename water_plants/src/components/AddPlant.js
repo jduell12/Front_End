@@ -11,7 +11,7 @@ import formSchema from '../validation/addPlantFormSchema';
 
 //styles
 import {
-    Errors, OuterDiv, StyledForm, StyledBtn, StyledInput, StyledLabel
+    Errors, OuterDiv, StyledForm, StyledBtn, StyledInput, StyledLabel, StyledTitle
 } from '../styles/AddPlantStyles';
 
 const AddPlant = props => {
@@ -90,12 +90,13 @@ const AddPlant = props => {
 
     return(
       <OuterDiv>
-        <Errors>
-            <p>{errorValues.name}</p>
-            <p>{errorValues.species}</p>
-            <p>{errorValues.water_frequency}</p>
-        </Errors>
         <StyledForm onSubmit={submitForm}>
+            <StyledTitle>Add A Plant</StyledTitle>
+            <Errors>
+                <p>{errorValues.name}</p>
+                <p>{errorValues.species}</p>
+                <p>{errorValues.water_frequency}</p>
+            </Errors>
             <StyledLabel htmlFor='name'>
                 Plant name: &nbsp;
                 <StyledInput 

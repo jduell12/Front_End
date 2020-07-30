@@ -87,3 +87,7 @@ h4{
 p, label, input, link, a{
 	font-size: 2rem;
 }
+
+p{
+	display: block;
+}
