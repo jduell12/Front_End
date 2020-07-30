@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import {Link} from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 
 const initialUserValue = {
@@ -25,6 +26,10 @@ export default function UserProfile() {
             console.log(err)
         })
     }, [])
+
+    const deleteUser = () => {
+        
+    }
     
 
     return (
@@ -38,8 +43,8 @@ export default function UserProfile() {
                 <p>phone: {user.phone}</p>
             </div>
             <div>
-                <button>Edit User Profile</button>
-                <button>Delete User Profile</button>
+                <Link to="/private/edituser"><button>Edit User Profile</button></Link>
+                <button onClick={() => deleteUser()}>Delete User Profile</button>
             </div>
         </div>
     )
