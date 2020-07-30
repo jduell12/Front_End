@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 
 export const Errors = styled.div`
-    color: red;
-    font-size: 1rem;
-    margin: 3%;
+    color: white;
+    background: #cc3300;
+    font-size: 1.75rem;
+    margin: 3% 25%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
 `;
 
 export const OuterDiv = styled.div`
@@ -17,8 +22,8 @@ export const StyledForm = styled.form`
     border: 1px solid black;
     border-radius: 6px;
     box-shadow: 7px 8px 25px -1px black;
-    margin: 3%;
-    padding: 3%;
+    margin: 3.5%;
+    padding: 2%;
    background: #3B945E;
 `;
 
@@ -42,7 +47,7 @@ export const StyledBtn = styled.button`
 `;
 
 export const StyledInput = styled.input`
-   margin: 3% 20%;
+   margin: 2% 20%;
    text-align: center;
    background: #E3E7D9;
 `;
@@ -54,5 +59,5 @@ export const StyledLabel = styled.label`
 `;
 
 export const StyledTitle = styled.h1`
-    margin-top: 3%;
+    margin-top: 1.5%;
 `;
