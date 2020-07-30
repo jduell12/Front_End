@@ -20,7 +20,6 @@ const EditUser = () => {
     const history = useHistory();
 
     const initialFormErrors = {
-            username: '',
             firstname: '',
             lastname: '',
             primaryemail: '',
@@ -28,7 +27,6 @@ const EditUser = () => {
     }
 
     const iniitalFormValues = {
-        username: userInfo.username,
         firstname: userInfo.firstname,
         lastname: userInfo.lastname,
         primaryemail: userInfo.primaryemail,
@@ -90,24 +88,15 @@ const EditUser = () => {
     }
     return(
         <div>
-            <Errors>
-                <p>{formErrors.username}</p>
-                <p>{formErrors.firstname}</p>
-                <p>{formErrors.lastname}</p>
-                <p>{formErrors.primaryemail}</p>
-                <p>{formErrors.phone}</p>
-            </Errors>
             <StyledForm onSubmit={submitForm}>
-                <StyledLabel htmlFor="editUsername">
-                    Username: &nbsp;
-                    <StyledInput 
-                        id="editUsername"
-                        name="username"
-                        type="text"
-                        onChange={changeHandler}
-                        value={formValues.username}
-                    />
-                </StyledLabel>
+                <h1>{userInfo.username}</h1>
+                <Errors>
+                    <p>{formErrors.username}</p>
+                    <p>{formErrors.firstname}</p>
+                    <p>{formErrors.lastname}</p>
+                    <p>{formErrors.primaryemail}</p>
+                    <p>{formErrors.phone}</p>
+                </Errors>
                 <StyledLabel htmlFor="editFirt">
                     First Name: &nbsp;
                     <StyledInput 

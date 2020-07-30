@@ -1,22 +1,15 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-export const Card = styled.div`
-    margin: 5% 25%;
+export const StyledCard = styled.div`
+    margin: 2% 25%;
     padding: 3%;
     background: #3B945E;
     border-radius: 2%;
-    display: flex;
-    flex-direction: column;
-
 `
 
 export const StyledDetails = styled.div`
     margin: 2% 0;
     font-size: 2rem;
-`
-
-export const StyledTitle = styled.h1`
-    margin: 1%;
 `
 
 export const StyledBtn = styled.button`

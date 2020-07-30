@@ -12,7 +12,7 @@ export const Errors = styled.div`
 `;
 
 export const OuterDiv = styled.div`
-
+    padding-top: 3%;
 `;
 
 export const StyledForm = styled.form`
@@ -22,8 +22,8 @@ export const StyledForm = styled.form`
     border: 1px solid black;
     border-radius: 6px;
     box-shadow: 7px 8px 25px -1px black;
-    margin: 3.5%;
-    padding: 2%;
+    margin: 3% 20%;
+    padding: 1%;
    background: #3B945E;
 `;
 
@@ -47,7 +47,7 @@ export const StyledBtn = styled.button`
 `;
 
 export const StyledInput = styled.input`
-   margin: 2% 20%;
+   margin: 1% 20%;
    text-align: center;
    background: #E3E7D9;
 `;
@@ -61,3 +61,7 @@ export const StyledLabel = styled.label`
 export const StyledTitle = styled.h1`
     margin-top: 1.5%;
 `;
+
+export const StyledLink = styled.a`
+    margin-bottom: 1.5%;
+`

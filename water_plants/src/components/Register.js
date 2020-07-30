@@ -3,6 +3,10 @@ import React, {useState, useEffect,} from "react";
 import axios from 'axios';
 import * as yup from 'yup';
 
+import {
+  StyledBtn, StyledForm, StyledInput, StyledLabel, Errors
+} from '../styles/AddPlantStyles'
+
 
 const initialFormValues = {
     firstname: '',
@@ -65,7 +69,7 @@ export default function Register(props){
           })
           .catch(err => {
             // const
-            debugger
+            console.log(err);
           })
           .finally(
             setFormValues(initialFormValues),
@@ -100,7 +104,7 @@ export default function Register(props){
         const { name, value } = evt.target
         inputChange(name, value)
       }
-      // second half of input change
+      // second half of StyledInput change
       const inputChange = (name, value) => {
 
         yup
@@ -129,77 +133,73 @@ export default function Register(props){
 
     // build elements for form/ inputs for first name, last name, email, phone number, and password
     return(
-       
-        <div className='registration' onSubmit={onSubmit}>
-            <h2>Join WaterMyPlants Today!</h2>
-            <div className='errors-container'>
-                <div>{formErrors.firstname}</div>
-                <div>{formErrors.lastname}</div>
-                <div>{formErrors.email}</div>
-                <div>{formErrors.phone}</div>
-                <div>{formErrors.password}</div>
-                {/* <div>{Email already taken}</div> */}
-            </div>
+      <StyledForm onSubmit={onSubmit}>
+          <h2>Join WaterMyPlants Today!</h2>
+          <Errors className='errors-container'>
+              <div>{formErrors.firstname}</div>
+              <div>{formErrors.lastname}</div>
+              <div>{formErrors.email}</div>
+              <div>{formErrors.phone}</div>
+              <div>{formErrors.password}</div>
+              {/* <div>{Email already taken}</div> */}
+          </Errors>
+          <StyledLabel>First Name:&nbsp;
+              <StyledInput 
+                  value={formValues.firstname}
+                  onChange={onInputChange} // checkes
+                  placeholder='First Name'
+                  maxLength='14'
+                  name='firstname'
+                  type='text'
+              />
 
-            <form>
-                <label>First Name:&nbsp;
-                    <input 
-                        value={formValues.firstname}
-                        onChange={onInputChange} // checkes
-                        placeholder='First Name'
-                        maxLength='14'
-                        name='firstname'
-                        type='text'
-                    />
-
-                </label>
-                <label>Last Name: &nbsp;
-                    <input 
-                        value={formValues.lastname}
-                        onChange={onInputChange}
-                        placeholder='Last Name'
-                        name='lastname'
-                        type='text'
-                    />
-                </label>
-                <label>E-Mail: &nbsp;
-                    <input 
-                        value={formValues.primaryemail}
-                        onChange={onInputChange}
-                        placeholder='E-mail'
-                        name='primaryemail'
-                        type='email'
-                    />
-                </label>
-                <label>Username &nbsp;
-                    <input 
-                        value={formValues.username}
-                        onChange={onInputChange}
-                        placeholder='Username'
-                        name='username'
-                        type='text'
-                    />
-                </label>
-                <label>Phone Number: &nbsp;
-                    <input 
-                        value={formValues.phone}
-                        onChange={onInputChange}
-                        placeholder='Phone Number'
-                        name='phone'
-                        type='text'
-                    />
-                </label>
-                <label>Password &nbsp;
-                    <input 
-                        value={formValues.password}
-                        onChange={onInputChange}
-                        placeholder='Password'
-                        name='password'
-                        type='text'
-                    />
-                </label>
-                <button disabled={disabled} >Submit</button>
-            </form>
-        </div>
+          </StyledLabel>
+          <StyledLabel>Last Name: &nbsp;
+              <StyledInput 
+                  value={formValues.lastname}
+                  onChange={onInputChange}
+                  placeholder='Last Name'
+                  name='lastname'
+                  type='text'
+              />
+          </StyledLabel>
+          <StyledLabel>E-Mail: &nbsp;
+              <StyledInput 
+                  value={formValues.primaryemail}
+                  onChange={onInputChange}
+                  placeholder='E-mail'
+                  name='primaryemail'
+                  type='email'
+              />
+          </StyledLabel>
+          <StyledLabel>Phone Number: &nbsp;
+              <StyledInput 
+                  value={formValues.phone}
+                  onChange={onInputChange}
+                  placeholder='Phone Number'
+                  name='phone'
+                  type='text'
+              />
+          </StyledLabel>
+          <StyledLabel>Username &nbsp;
+              <StyledInput 
+                  value={formValues.username}
+                  onChange={onInputChange}
+                  placeholder='Username'
+                  name='username'
+                  type='text'
+              />
+          </StyledLabel>
+          <StyledLabel>Password &nbsp;
+              <StyledInput 
+                  value={formValues.password}
+                  onChange={onInputChange}
+                  placeholder='Password'
+                  name='password'
+                  type='text'
+              />
+          </StyledLabel>
+          <StyledBtn disabled={disabled} >Submit</StyledBtn>
+      </StyledForm>
     )
 }

@@ -91,3 +91,12 @@ p, label, input, link, a{
 p{
 	display: block;
 }
+
+a{
+	text-decoration: none;
+	color:black;
+}
+
+button:hover{
+	cursor: pointer;
+}

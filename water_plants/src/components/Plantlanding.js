@@ -1,52 +1,20 @@
 //Hernandez
-import React, {useState, useContext, useEffect} from "react";
+import React, {useContext, useEffect} from "react";
 import Plant from './Plant'
 import {axiosWithAuth} from '../utils/axiosWithAuth'
-import { Switch, Link, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {UserContext} from '../context/UserContext';
 import {PlantContext} from '../context/PlantContext';
 
-// export default function Plantlanding(props){
-//     const [plants, setPlants] = useState([])
+import {
+    OuterDiv
+} from '../styles/AddPlantStyles'
 
-    // axiosWithAuth()
-    // .get('https://watermyplantsdatabase.herokuapp.com/myinfo') 
-    //     .then(res => {
-    //         setPlants(res.data)
-    //     })
-    //     .catch(err => {
-    //         debugger
-    //         console.log(err)
-    //     }, [])
-
-    // return(
-    //     <div className='plant-page'>
-    //         <h2> Your Plants!</h2>
-    //         <button>
-    //             <Link to="/private/addplant">Add Plant</Link>   
-    //         </button>
-    //         <button>
-    //             <Link to="/private/user">Profile</Link>   
-    //         </button>
-
-    //         <div className='card-holder'>
-    //             {
-    //                 plants.map(plant =>
-    //                     <Plant plant={plant}/>
-    //                 )
-    //             }
-    //         </div>
-            
-    //     </div>
-    // )
-
-    //context for user
-
-// import {axiosWithAuth} from '../utils/axiosWithAuth'
+import {StyledBtn} from '../styles/PlantCardStyles';
 
 export default function Plantlanding(){
 
-    const {userInfo, setUserInfo, setPlants, plantList} = useContext(UserContext);
+    const {userInfo, setUserInfo, plantList} = useContext(UserContext);
     const {plants} = userInfo;
 
     const{setId} = useContext(PlantContext);
@@ -63,9 +31,9 @@ export default function Plantlanding(){
     }, [plantList]);
 
     return(
-        <div className='plant-page'>
+        <OuterDiv className='plant-page'>
             <h2> Your Plants!</h2>
-             <Link to="/private/addplant"><button>Add Plant </button></Link>
+             <Link to="/private/addplant"><StyledBtn>Add Plant </StyledBtn></Link>
             {!plants ? <span></span> : 
                 (
             <div>
@@ -81,6 +49,6 @@ export default function Plantlanding(){
             </div>
                 )
             }
-        </div>
+        </OuterDiv>
     )
 }
