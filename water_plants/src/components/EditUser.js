@@ -79,10 +79,10 @@ const EditUser = () => {
         event.preventDefault();
 
         axiosWithAuth()
-            .put('/user/plants/', userInfo)
+            .put(`user/${userInfo.userid}`, userInfo)
             .then(res => {
                 console.log(res);
-                history.push('/');
+                history.push('/private/user');
             })
             .catch(err => console.log(err))
     }
