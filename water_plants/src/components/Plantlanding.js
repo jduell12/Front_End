@@ -42,7 +42,7 @@ import {PlantContext} from '../context/PlantContext';
 
     //context for user
 
-import {axiosWithAuth} from '../utils/axiosWithAuth'
+// import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 export default function Plantlanding(){
 

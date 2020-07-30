@@ -4,6 +4,8 @@ import { Switch, Link, useHistory} from 'react-router-dom'
 
 export default function Header(props){
 
+const {logout} = props
+
 const history = useHistory()
 const [currentURL, setCurrentURL] = useState(history.location.pathname)
 const [prevURL, setPrevURL] = useState('')
@@ -13,12 +15,8 @@ function refresh(){
 }
 
 useEffect(() => {
-   function updateHeader(){
-       if (currentURL === prevURL){
-           setPrevURL(currentURL)
-       }
-   }
-  },[currentURL, prevURL])
+    refresh()
+  },[logout])
 
     return(
         <header>
@@ -27,28 +25,21 @@ useEffect(() => {
                 <a href="https://cranky-hypatia-e034a5.netlify.app/">Home</a>
                 {
                     currentURL === '/' && 
-                    <Link to='/profile'>Profile</Link>
-                }
-                {
-                    currentURL === '/' && 
-                    <Link to='/'>Sign Out</Link>
-                }        
+                    <Link to='/private/user'>User Profile</Link>
+                }  
                 {
                     currentURL === '/signin' && 
                     <Link  to='/register'>Register</Link> 
                 }
                 {
-                    currentURL === '/profile' &&
-                    <Link  to='/'>Plants</Link>
-                }
-                 {
-                    currentURL === '/profile' &&
-                    <Link to='/'>Sign Out</Link>
+                    currentURL === '/private/user' &&
+                    <Link  to='/'>Plant Dashboard</Link>
                 }
                 {
                     currentURL === '/register' &&
                      <Link to ='/signin'>Sign In</Link>
                 }
+                <button onClick={() => logout()}>Logout</button>
               
             </div>
         </header>

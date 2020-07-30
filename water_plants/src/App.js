@@ -35,17 +35,18 @@ function App() {
 
     const logoutUser = () => {
       localStorage.clear();
-      history.push('/');
+      history.push('/signin');
     }
 
   return (
     <div className="App">
       <div className='nav-links'>
-        <a href="https://cranky-hypatia-e034a5.netlify.app/">Home</a>
-        <Link to='/register'>Register</Link>
+        {/* <a href="https://cranky-hypatia-e034a5.netlify.app/">Home</a> */}
+        {/* <Link to='/register'>Register</Link>
         <Link to='/private/user'>User Profile</Link>
-        <Link to="/">Plant Dashboard</Link>
-        <button onClick={() => logoutUser()}>Logout</button>
+        <Link to="/">Plant Dashboard</Link> */}
+        <Header logout={logoutUser}/>
+        {/* <button onClick={() => logoutUser()}>Logout</button> */}
       </div>
 
       {/* Switch for endpoints */}
