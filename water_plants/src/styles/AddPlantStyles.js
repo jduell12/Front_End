@@ -12,7 +12,7 @@ export const Errors = styled.div`
 `;
 
 export const OuterDiv = styled.div`
-
+    color: white;
 `;
 
 export const StyledForm = styled.form`

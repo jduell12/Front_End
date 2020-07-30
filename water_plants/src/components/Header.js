@@ -1,6 +1,10 @@
 import React, { useEffect, useState} from 'react';
 import { Link, useHistory} from 'react-router-dom'
 
+import {
+    StyledDiv, StyledBtn, StyledHeader
+} from '../styles/HeaderStyles'
+
 
 export default function Header(props){
 
@@ -19,30 +23,31 @@ useEffect(() => {
   },[logout])
 
     return(
-        <header>
-            <h1>WaterMyPlants</h1>
-            <div className='nav-links' onClick={refresh}>
+        <StyledHeader>
+            <h1 style={{color: 'black'}}>WaterMyPlants</h1>
+            <StyledDiv className='nav-links' onClick={refresh}>
                 <Link to="/">Home</Link>
                 {
                     currentURL === '/' && 
-                    <Link to='/private/user'>User Profile</Link>
+                    <Link to='/private/user'>User Profile</Link> &&
+                    <StyledBtn onClick={() => logout()}>Logout</StyledBtn>
                 }  
                 {
                     currentURL === '/signin' && 
-                    <Link  to='/register'>Register</Link> 
+                    <Link to='/register'>Register</Link> 
                 }
                 {
                     currentURL === '/private/user' &&
-                    <Link  to='/'>Plant Dashboard</Link>
+                    <Link  to='/'>Plant Dashboard</Link> &&
+                    <StyledBtn onClick={() => logout()}>Logout</StyledBtn>
                 }
                 {
                     currentURL === '/register' &&
                      <Link to ='/signin'>Sign In</Link>
                 }
-                <button onClick={() => logout()}>Logout</button>
               
-            </div>
-        </header>
+            </StyledDiv>
+        </StyledHeader>
         
     )
 }
