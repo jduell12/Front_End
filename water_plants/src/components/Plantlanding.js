@@ -42,13 +42,25 @@ import {PlantContext} from '../context/PlantContext';
 
     //context for user
 
+import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 export default function Plantlanding(){
 
-    const {userInfo} = useContext(UserContext);
+    const {userInfo, setUserInfo, setPlants, plantList} = useContext(UserContext);
     const {plants} = userInfo;
 
     const{setId} = useContext(PlantContext);
+
+    useEffect(() => {
+        axiosWithAuth()
+        .get('https://watermyplantsdatabase.herokuapp.com/myinfo') 
+        .then(res => {
+            setUserInfo(res.data);
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }, [plantList]);
 
     return(
         <div className='plant-page'>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Link, Route } from 'react-router-dom'
+import { Switch, Link, Route, useHistory } from 'react-router-dom'
 import SignInSide from './material-ui/SignInSide';
 
 import {axiosWithAuth} from './utils/axiosWithAuth'
@@ -18,6 +18,7 @@ function App() {
   const [userInfo, setUserInfo] = useState({});
   const [plantList, setPlants] = useState([]);
   const [plantId, setId] = useState('');
+  const history = useHistory();
 
     useEffect(() => {
         axiosWithAuth()
@@ -31,9 +32,21 @@ function App() {
             })
     }, []); 
 
+
+    const logoutUser = () => {
+      localStorage.clear();
+      history.push('/');
+    }
+
   return (
     <div className="App">
-      <Header/>
+      <div className='nav-links'>
+        <a href="https://cranky-hypatia-e034a5.netlify.app/">Home</a>
+        <Link to='/register'>Register</Link>
+        <Link to='/private/user'>User Profile</Link>
+        <Link to="/">Plant Dashboard</Link>
+        <button onClick={() => logoutUser()}>Logout</button>
+      </div>
 
       {/* Switch for endpoints */}
       <Switch>
@@ -41,8 +54,8 @@ function App() {
           {/* <Register inputChange={inputChange}/> */}
         {/* <Route exact path='/userprofile' component={UserProfile}/> */}
 
-        <UserContext.Provider value={{userInfo, plantList, setPlants}}>
-          <Route exact path='/signin'  component={SignInSide} />
+        <UserContext.Provider value={{userInfo, setUserInfo, plantList, setPlants}}>
+          <Route exact path='/signin'  component={SignInSide}/>
           <PrivateRoute exact path = "/private/user" component={UserProfile} />
           <PrivateRoute exact path ="/private/edituser" component={EditUser} />
           <PrivateRoute exact path = "/private/addplant" component={AddPlant} />

@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Redirect} from 'react-router-dom';
 import * as Yup from 'yup';
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 
@@ -13,7 +13,7 @@ import formSchema from '../validation/addPlantFormSchema';
 import {Errors} from '../styles/AddPlantStyles'
 
 const AddPlant = props => {
-    const {userInfo} = useContext(UserContext);
+    const {userInfo, setPlants, plantList} = useContext(UserContext);
     const {userid} = userInfo;
     const history = useHistory();
 
@@ -74,13 +74,16 @@ const AddPlant = props => {
         axiosWithAuth()
             .post(`/plants/${userid}`, formValues)
             .then(res => {
-                console.log(res);
+                setPlants({
+                    ...plantList,
+                    formValues
+                })
             })
             .catch(err => console.log(err))
             .finally(
                 setValues(initialFormValues),
-                history.push('/')
             );
+        history.push('/');
     }
 
     return(

@@ -24,7 +24,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" to="https://material-ui.com/">
         Water My Plants
       </Link>{' '}
       {new Date().getFullYear()}
@@ -127,6 +127,7 @@ export default function SignInSide(props) {
       }
     })
     .then(res => {
+      console.log(res);
       localStorage.setItem('token', res.data.access_token);
       props.history.push('/');
     })
