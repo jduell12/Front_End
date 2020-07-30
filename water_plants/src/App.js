@@ -10,7 +10,7 @@ import {PlantContext} from './context/PlantContext';
 
 //components
 import {
-  PrivateRoute, AddPlant, EditPlant, EditUser, Register, Plantlanding
+  PrivateRoute, AddPlant, EditPlant, EditUser, Register, Plantlanding, Header
 } from './components'
 import UserProfile from './components/UserProfile';
 
@@ -35,22 +35,22 @@ function App() {
 
     const logoutUser = () => {
       localStorage.clear();
-      history.push('/');
+      history.push('/signin');
     }
 
   return (
     <div className="App">
       <div className='nav-links'>
-        <a href="https://cranky-hypatia-e034a5.netlify.app/">Home</a>
-        <Link to='/register'>Register</Link>
+        {/* <a href="https://cranky-hypatia-e034a5.netlify.app/">Home</a> */}
+        {/* <Link to='/register'>Register</Link>
         <Link to='/private/user'>User Profile</Link>
-        <Link to="/">Plant Dashboard</Link>
-        <button onClick={() => logoutUser()}>Logout</button>
+        <Link to="/">Plant Dashboard</Link> */}
+        <Header logout={logoutUser}/>
+        {/* <button onClick={() => logoutUser()}>Logout</button> */}
       </div>
 
       {/* Switch for endpoints */}
       <Switch>
-
         <Route exact path='/register' component={Register}/>
           {/* <Register inputChange={inputChange}/> */}
         {/* <Route exact path='/userprofile' component={UserProfile}/> */}
@@ -61,8 +61,8 @@ function App() {
           <PrivateRoute exact path ="/private/edituser" component={EditUser} />
           <PrivateRoute exact path = "/private/addplant" component={AddPlant} />
           <PlantContext.Provider value={{plantId, setId}}>
-            <PrivateRoute exact path ="/" component={Plantlanding} />
-            <PrivateRoute exact path ="/private/editplant" component={EditPlant} />
+          <PrivateRoute exact path ="/" component={Plantlanding} />
+          <PrivateRoute exact path ="/private/editplant" component={EditPlant} />
           </PlantContext.Provider>
         </UserContext.Provider>
 
