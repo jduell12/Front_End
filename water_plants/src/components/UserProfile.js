@@ -51,8 +51,7 @@ export default function UserProfile() {
     return (
 
         <Card >
-            <StyledTitle>Profile</StyledTitle>
-            <h2>{user.username}</h2>
+            <StyledTitle>{user.username}</StyledTitle>
             <StyledDetails>First Name: {user.firstname}</StyledDetails>
             <StyledDetails>Last Name: {user.lastname}</StyledDetails>
             <StyledDetails>email: {user.primaryemail}</StyledDetails>
