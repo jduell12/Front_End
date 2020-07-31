@@ -5,6 +5,7 @@ export const StyledCard = styled.div`
     padding: 3%;
     background: #3B945E;
     border-radius: 2%;
+    opacity: 0.9;
 `
 
 export const StyledDetails = styled.div`

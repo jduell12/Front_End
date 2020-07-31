@@ -24,7 +24,8 @@ export const StyledForm = styled.form`
     box-shadow: 7px 8px 25px -1px black;
     margin: 3% 20%;
     padding: 1%;
-   background: #3B945E;
+    background: #3B945E;
+    opacity: 0.9;
 `;
 
 export const StyledBtn = styled.button`

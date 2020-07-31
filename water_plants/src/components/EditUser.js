@@ -137,7 +137,7 @@ const EditUser = () => {
                         value={formValues.phone} 
                     />
                 </StyledLabel>
-                <StyledBtn id="editUserBtn" disabled={disabled}>Edit Information</StyledBtn>
+                <StyledBtn id="editUserBtn" disabled={disabled}>Edit Info</StyledBtn>
             </StyledForm>
         </div>
     )

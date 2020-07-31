@@ -7,6 +7,7 @@ export const Card = styled.div`
     border-radius: 2%;
     display: flex;
     flex-direction: column;
+    opacity: 0.9;
 
 `
 

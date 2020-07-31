@@ -12,7 +12,7 @@ import {
 } from '../styles/PlantCardStyles'
 
 export default function Plant(props){
-    const {plantList, setPlants} = useContext(UserContext);
+    const {plantList, setPlants, userInfo} = useContext(UserContext);
     const {plantId, setId} = useContext(PlantContext);
     // ,may need to add prop for img from API
     const {plant} = props
@@ -44,6 +44,7 @@ export default function Plant(props){
 
     const editPlant = () => {
         setId(plantid);
+        setPlants(userInfo.plants);
         history.push(`/private/editplant`);
     }
 
