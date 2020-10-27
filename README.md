@@ -22,7 +22,7 @@
   # Java Back End 
   - Adonis Puente
   
-  Java back end is no longer up as a deployed API. Now implemented NodeJS/Express JS Backend.
+  Java back end is no longer up as a deployed API. Working on implementing NodeJS/Express JS Backend.
   
   # Node JS/Express JS Backend
   - Jessica Duell
