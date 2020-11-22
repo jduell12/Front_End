@@ -71,7 +71,7 @@ export default function Register(props) {
   const postNewUser = (newUser) => {
     axios
       .post(
-        "https://watermyplantsdatabase.herokuapp.com/createnewuser",
+        "https://water-my-plants-backend-node.herokuapp.com/auth/createnewuser",
         newUser,
       )
       .then((res) => {
