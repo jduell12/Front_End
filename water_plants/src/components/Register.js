@@ -47,7 +47,10 @@ export default function Register(props) {
       .string()
       .min(2, "Name must be at least 2 characters")
       .required("First Name is Required"),
-    lastname: yup.string().min(4, "Last Name must be at least 4 characters"),
+    lastname: yup
+      .string()
+      .min(4, "Last Name must be at least 4 characters")
+      .required("Last Name is Required"),
     primaryemail: yup
       .string()
       .required()
@@ -60,11 +63,7 @@ export default function Register(props) {
       .string()
       .required("Password is Required")
       .min(8, "Password must contain at least 8 characters"),
-    phone: yup
-      .string()
-      .required("Phone Number is Required")
-      .min(10, "Phone Number must contain 10 characters"),
-    // .max((10, 'Phone Number must contain 10 characters'))
+    phone: yup.string(),
   });
 
   // prevents page from reloading & calls submit function from App.js
@@ -105,9 +104,9 @@ export default function Register(props) {
     formSchema.isValid(formValues).then((valid) => {
       setDisabled(!valid);
     });
-  }, [formValues]);
+  }, [formValues, formSchema]);
 
-  // pulls name and value from event target. Passthrough to inputChange
+  // pulls name and value from event target. Pass through to inputChange
   const onInputChange = (evt) => {
     const { name, value } = evt.target;
     inputChange(name, value);
@@ -125,7 +124,6 @@ export default function Register(props) {
       })
 
       .catch((err) => {
-        console.log(name);
         setFormErrors({
           ...formErrors,
           [name]: err.errors,
