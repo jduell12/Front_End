@@ -121,7 +121,10 @@ export default function SignInSide(props) {
     };
 
     axios
-      .post("https://watermyplantsdatabase.herokuapp.com/login", newUser)
+      .post(
+        "https://water-my-plants-backend-node.herokuapp.com/auth/login",
+        newUser,
+      )
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.token);
