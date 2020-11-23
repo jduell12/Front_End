@@ -29,7 +29,6 @@ const initialFormErrors = {
   phone: "",
 };
 
-// const initialUser = []
 const initialDisabled = true;
 
 export default function Register(props) {
@@ -37,7 +36,6 @@ export default function Register(props) {
 
   const { history } = props;
 
-  // const [user, setUser] = useState(initialUser)
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
@@ -68,6 +66,7 @@ export default function Register(props) {
 
   // prevents page from reloading & calls submit function from App.js
   const postNewUser = (newUser) => {
+    console.log(newUser);
     axios
       .post(
         "https://water-my-plants-backend-node.herokuapp.com/auth/createnewuser",
@@ -80,6 +79,7 @@ export default function Register(props) {
       .catch((err) => {
         // const
         console.log(err);
+        console.log(err.message);
       })
       .finally(setFormValues(initialFormValues), history.push("/"));
   };
